@@ -1,6 +1,7 @@
 # Welcome to I-Worhship
 
-I-Worship is an mobile application to help churches to access resources quickly (such as lyrics). 
+I-Worship is an mobile application to help churches to access resources quickly (such as lyrics). The documents can be loaded via a Google document. The import function will load a page as an entry using the first line as "title."
+
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started
