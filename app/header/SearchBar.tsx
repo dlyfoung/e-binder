@@ -3,13 +3,13 @@ import { Input, InputField, InputIcon, InputSlot } from "@/components/ui/input";
 import { SearchIcon } from "@/components/ui/icon";
 
 const fieldStyle = {
-  padding: 100,
+  padding: 0,
 };
 
 export function SearchBar() {
   return (
-    <Input>
-      <InputField 
+    <Input size="sm">
+      <InputField
         placeholder="Search..." 
         style={fieldStyle}
       />
