@@ -9,10 +9,7 @@ const fieldStyle = {
 export function SearchBar() {
   return (
     <Input size="sm">
-      <InputField
-        placeholder="Search..." 
-        style={fieldStyle}
-      />
+      <InputField placeholder="Search..." style={fieldStyle} />
       <InputSlot>
         <InputIcon as={SearchIcon} />
       </InputSlot>

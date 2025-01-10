@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchBar } from "@/components/ui/iworship/SearchBar";
+import { SearchBar } from "@/app/header/SearchBar";
 import { Icon, MenuIcon } from "@/components/ui/icon";
 import { View } from "react-native";
 import { Pressable } from "@/components/ui/pressable";
