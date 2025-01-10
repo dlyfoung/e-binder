@@ -6,7 +6,7 @@ const fieldStyle = {
   padding: 0,
 };
 
-export function SearchBar() {
+export default function SearchBar() {
   return (
     <Input size="sm">
       <InputField placeholder="Search..." style={fieldStyle} />
