@@ -8,7 +8,7 @@ import {
   DrawerHeader,
 } from "@/components/ui/drawer";
 import { Heading } from "@/components/ui/heading";
-import { Icon, RemoveIcon, RepeatIcon } from "@/components/ui/icon";
+import { Icon, RepeatIcon, SlashIcon } from "@/components/ui/icon";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
 import React from "react";
@@ -16,14 +16,18 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+  menuContent: {
+    marginBottom: 20,
+    marginTop: 20,
+  },
   menuIcon: {
     marginRight: 5,
   },
   menuItem: {
     alignItems: "center",
     flexDirection: "row",
-    marginBottom: 2,
-    marginTop: 2,
+    marginBottom: 3,
+    marginTop: 3,
   },
 });
 
@@ -37,13 +41,13 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
         <DrawerHeader>
           <Heading>{t("settings")}</Heading>
         </DrawerHeader>
-        <DrawerBody>
+        <DrawerBody style={styles.menuContent}>
           <Pressable style={styles.menuItem}>
             <Icon as={RepeatIcon} style={styles.menuIcon} />
             <Text>{t("reload-document")}</Text>
           </Pressable>
           <Pressable style={styles.menuItem}>
-            <Icon as={RemoveIcon} style={styles.menuIcon} />
+            <Icon as={SlashIcon} style={styles.menuIcon} />
             <Text>{t("wipe-data")}</Text>
           </Pressable>
         </DrawerBody>
