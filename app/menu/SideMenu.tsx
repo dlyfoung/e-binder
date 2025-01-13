@@ -10,21 +10,24 @@ import {
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function SideMenu({ onClose, show }: SideMenuProps) {
+  const { t } = useTranslation();
+
   return (
     <Drawer closeOnOverlayClick={true} isOpen={show} size="lg">
       <DrawerBackdrop />
       <DrawerContent>
         <DrawerHeader>
-          <Heading>Menu</Heading>
+          <Heading>{t("menu")}</Heading>
         </DrawerHeader>
         <DrawerBody>
-          <Text>Settings</Text>
+          <Text>TODO</Text>
         </DrawerBody>
         <DrawerFooter>
           <Button onPress={onClose} style={{ flex: 1 }}>
-            <ButtonText>Close</ButtonText>
+            <ButtonText>{t("close")}</ButtonText>
           </Button>
         </DrawerFooter>
       </DrawerContent>

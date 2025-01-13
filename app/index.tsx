@@ -3,6 +3,7 @@ import { Text } from "@/components/ui/text";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import Header from "./header/Header";
+import "@/i18n";
 
 const styles = StyleSheet.create({
   container: {
