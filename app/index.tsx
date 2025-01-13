@@ -1,8 +1,8 @@
-import React from "react";
 import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import Header from "./header/Header";
-import { Text } from "@/components/ui/text";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   readingContent: {
-    padding: 10,
     alignItems: "center",
+    padding: 10,
   },
   readingTitle: {
     padding: 10,

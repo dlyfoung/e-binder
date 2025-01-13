@@ -1,8 +1,8 @@
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import tseslint from "typescript-eslint";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -15,6 +15,10 @@ export default [
       "components/ui/**/*",
       "!components/ui/iworship/**/*",
     ],
+    rules: {
+      // TODO: "sort-imports": ["error"],
+      "sort-keys": ["error", "asc", { natural: true }],
+    },
   },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
