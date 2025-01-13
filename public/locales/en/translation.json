@@ -1,4 +1,6 @@
 {
     "close": "Close",
-    "menu": "Menu"
+    "reload-document": "Reload document",
+    "settings": "Settings",
+    "wipe-data": "Wipe data"
 }
