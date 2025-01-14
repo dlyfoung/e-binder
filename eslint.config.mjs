@@ -1,7 +1,7 @@
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
-import globals from "globals";
 import pluginJs from "@eslint/js";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import pluginReact from "eslint-plugin-react";
+import globals from "globals";
 import tseslint from "typescript-eslint";
 
 /** @type {import('eslint').Linter.Config[]} */
@@ -11,7 +11,6 @@ export default [
       "/*",
       "*.config.js",
       "*.d.ts",
-      "app-example/**/*",
       "components/ui/**/*",
       "!components/ui/iworship/**/*",
     ],
