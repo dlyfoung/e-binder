@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import SideMenu from "@/app/menu/SideMenu";
 import { Icon, MenuIcon } from "@/components/ui/icon";
 import { Pressable } from "@/components/ui/pressable";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import SearchBar from "./SearchBar";
-import SideMenu from "@/app/menu/SideMenu";
 
 const styles = StyleSheet.create({
   header: {

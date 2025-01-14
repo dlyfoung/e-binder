@@ -1,9 +1,9 @@
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
+import "@/i18n";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import Header from "./header/Header";
-import "@/i18n";
 
 const styles = StyleSheet.create({
   container: {

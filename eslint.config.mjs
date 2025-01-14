@@ -16,7 +16,6 @@ export default [
       "!components/ui/iworship/**/*",
     ],
     rules: {
-      // TODO: "sort-imports": ["error"],
       "sort-keys": ["error", "asc", { natural: true }],
     },
   },
