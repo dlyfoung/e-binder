@@ -14,9 +14,10 @@ export default [
       "components/ui/**/*",
       "!components/ui/iworship/**/*",
     ],
-    rules: {
-      "sort-keys": ["error", "asc", { natural: true }],
-    },
+    // TODO
+    // rules: {
+    //   "sort-keys": ["error", "asc", { natural: true }],
+    // },
   },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
