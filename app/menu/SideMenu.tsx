@@ -42,7 +42,9 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
   }
 
   async function reloadDocument() {
-    useLoadSource();
+    useLoadSource({
+      onLoadComplete: () => {},
+    });
     closeSideMenu();
   }
 

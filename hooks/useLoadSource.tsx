@@ -1,6 +1,8 @@
 import * as FileSystem from "expo-file-system";
 
-export default async function useLoadSource() {
+export default async function useLoadSource({
+  onLoadComplete,
+}: LoadSourceProps) {
   const callback = (downloadProgress: FileSystem.DownloadProgressData) => {
     const progress =
       downloadProgress.totalBytesWritten /
@@ -25,5 +27,13 @@ export default async function useLoadSource() {
     console.log(`page number=${pages.length}`);
     console.log("page 1");
     console.log(pages[0]);
+
+    if (onLoadComplete) {
+      onLoadComplete();
+    }
   });
+}
+
+interface LoadSourceProps {
+  onLoadComplete?: () => void;
 }
