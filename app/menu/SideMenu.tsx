@@ -37,6 +37,8 @@ const styles = StyleSheet.create({
 export default function SideMenu({ onClose, show }: SideMenuProps) {
   const { t } = useTranslation();
   const [showProgress, setShowProgress] = useState(false);
+  const [progressPercentage, setProgressPercentage] = useState(0);
+  const [progressStep, setProgressStep] = useState<ReloadingStep>("initiating");
 
   function closeSideMenu() {
     if (onClose) {
@@ -45,13 +47,25 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
   }
 
   async function reloadDocument() {
+    setProgressPercentage(0);
     setShowProgress(true);
     useLoadSource({
+      onDownloading: (progress) => {
+        setProgressStep("downloading");
+        setProgressPercentage(progress);
+      },
       onLoadComplete: () => {
+        setProgressStep("complete");
+        setProgressPercentage(100);
+        // give a "feel" that the process is complete
         setTimeout(() => {
           setShowProgress(false);
           closeSideMenu();
-        }, 1000);
+        }, 500);
+      },
+      onUpdatingDatabase: () => {
+        setProgressStep("updating-database");
+        setProgressPercentage(0);
       },
     });
   }
@@ -64,7 +78,10 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
     <>
       {showProgress && (
         <FocusedMessage>
-          <ProgressBar progressPercentage={50} text={t("reloading")} />
+          <ProgressBar
+            progressPercentage={progressPercentage}
+            text={t(progressStep)}
+          />
         </FocusedMessage>
       )}
       <Drawer closeOnOverlayClick={true} isOpen={show} size="lg">
@@ -98,3 +115,9 @@ interface SideMenuProps {
   onClose?: () => void;
   show: boolean;
 }
+
+type ReloadingStep =
+  | "initiating"
+  | "downloading"
+  | "updating-database"
+  | "complete";

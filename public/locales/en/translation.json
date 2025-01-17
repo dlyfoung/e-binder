@@ -1,8 +1,12 @@
 {
     "close": "Close",
+    "complete": "Complete",
+    "downloading": "Downloading",
+    "initiating": "Initiating",
     "reload-document": "Reload document",
     "reloading": "Reloading",
     "search": "Search",
     "settings": "Settings",
+    "updating-database": "Updating database",
     "wipe-data": "Wipe data"
 }
