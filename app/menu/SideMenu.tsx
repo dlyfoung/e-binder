@@ -12,9 +12,11 @@ import { Icon, RepeatIcon, SlashIcon } from "@/components/ui/icon";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
 import useLoadSource from "@/hooks/useLoadSource";
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
+import FocusedMessage from "../components/FocusedMessage";
+import ProgressBar from "../components/ProgressBar";
 
 const styles = StyleSheet.create({
   menuContent: {
@@ -34,6 +36,7 @@ const styles = StyleSheet.create({
 
 export default function SideMenu({ onClose, show }: SideMenuProps) {
   const { t } = useTranslation();
+  const [showProgress, setShowProgress] = useState(false);
 
   function closeSideMenu() {
     if (onClose) {
@@ -42,10 +45,15 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
   }
 
   async function reloadDocument() {
+    setShowProgress(true);
     useLoadSource({
-      onLoadComplete: () => {},
+      onLoadComplete: () => {
+        setTimeout(() => {
+          setShowProgress(false);
+          closeSideMenu();
+        }, 1000);
+      },
     });
-    closeSideMenu();
   }
 
   function wipeData() {
@@ -53,29 +61,36 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
   }
 
   return (
-    <Drawer closeOnOverlayClick={true} isOpen={show} size="lg">
-      <DrawerBackdrop />
-      <DrawerContent>
-        <DrawerHeader>
-          <Heading>{t("settings")}</Heading>
-        </DrawerHeader>
-        <DrawerBody style={styles.menuContent}>
-          <Pressable onPress={reloadDocument} style={styles.menuItem}>
-            <Icon as={RepeatIcon} style={styles.menuIcon} />
-            <Text>{t("reload-document")}</Text>
-          </Pressable>
-          <Pressable onPress={wipeData} style={styles.menuItem}>
-            <Icon as={SlashIcon} style={styles.menuIcon} />
-            <Text>{t("wipe-data")}</Text>
-          </Pressable>
-        </DrawerBody>
-        <DrawerFooter>
-          <Button onPress={onClose} style={{ flex: 1 }}>
-            <ButtonText>{t("close")}</ButtonText>
-          </Button>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
+    <>
+      {showProgress && (
+        <FocusedMessage>
+          <ProgressBar progressPercentage={50} text={t("reloading")} />
+        </FocusedMessage>
+      )}
+      <Drawer closeOnOverlayClick={true} isOpen={show} size="lg">
+        <DrawerBackdrop />
+        <DrawerContent>
+          <DrawerHeader>
+            <Heading>{t("settings")}</Heading>
+          </DrawerHeader>
+          <DrawerBody style={styles.menuContent}>
+            <Pressable onPress={reloadDocument} style={styles.menuItem}>
+              <Icon as={RepeatIcon} style={styles.menuIcon} />
+              <Text>{t("reload-document")}</Text>
+            </Pressable>
+            <Pressable onPress={wipeData} style={styles.menuItem}>
+              <Icon as={SlashIcon} style={styles.menuIcon} />
+              <Text>{t("wipe-data")}</Text>
+            </Pressable>
+          </DrawerBody>
+          <DrawerFooter>
+            <Button onPress={onClose} style={{ flex: 1 }}>
+              <ButtonText>{t("close")}</ButtonText>
+            </Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    </>
   );
 }
 

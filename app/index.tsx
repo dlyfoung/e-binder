@@ -1,9 +1,9 @@
 import "@/i18n";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import ContentContainer from "./body/ContentContainer";
-import { ContentContext } from "./ContentContext";
+import { ThemeContext } from "./ThemeContext";
 import Header from "./header/Header";
+import Reader from "./reader/Reader";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,9 +17,9 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Header />
-      <ContentContext.Provider value="read">
-        <ContentContainer />
-      </ContentContext.Provider>
+      <ThemeContext.Provider value="light">
+        <Reader />
+      </ThemeContext.Provider>
     </View>
   );
 }
