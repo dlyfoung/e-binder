@@ -34,3 +34,5 @@ To lint and format code, use:
    ```bash
     npm run lint
    ```
+
+The application uses SQLite has offline database to manage the source document.
