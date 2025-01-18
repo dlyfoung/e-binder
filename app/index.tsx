@@ -1,25 +1,24 @@
+import { VStack } from "@/components/ui/vstack";
 import "@/i18n";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { ThemeContext } from "./ThemeContext";
 import Header from "./header/Header";
 import Reader from "./reader/Reader";
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "flex-start",
-    justifyContent: "center",
-    padding: 10,
+    padding: 20,
   },
 });
 
 export default function Index() {
   return (
-    <View style={styles.container}>
-      <Header />
-      <ThemeContext.Provider value="light">
+    <ThemeContext.Provider value="light">
+      <VStack style={styles.container}>
+        <Header />
         <Reader pageNumber={1} />
-      </ThemeContext.Provider>
-    </View>
+      </VStack>
+    </ThemeContext.Provider>
   );
 }
