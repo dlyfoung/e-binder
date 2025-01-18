@@ -1,38 +1,40 @@
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
+import { VStack } from "@/components/ui/vstack";
+import useGetPage from "@/hooks/useGetPage";
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 const styles = StyleSheet.create({
   readingContainer: {
     alignItems: "center",
     justifyContent: "center",
+    width: "100%",
   },
   readingContent: {
-    alignItems: "center",
     padding: 10,
+    width: "100%",
   },
   readingTitle: {
     padding: 10,
   },
 });
 
-export default function Reader() {
+export default function Reader({ pageNumber }: ReaderProps) {
+  const page = useGetPage(pageNumber);
+  const title = page?.title ?? "";
+  const content = page?.content ?? "";
+
   return (
-    <View style={styles.readingContainer}>
-      <Heading style={styles.readingTitle}>This is the title</Heading>
-      <View style={styles.readingContent}>
-        {/* TODO: format paragraphs */}
-        <Text>
-          Hello World!! This is so cool. I know who you are.I am someone you may
-          not know.
-        </Text>
-        <Text>
-          You&apos;ll not know me now, and you won&apos;t know me in 10,000
-          10,000 years.BLAH BLAH BLAH TODAY WAS TERRIBLE AND WAS SUPER
-          BORING.THE BORING DAY IN THE WHOLE ENTIRE UNIVERSE.
-        </Text>
-      </View>
-    </View>
+    <VStack style={styles.readingContainer}>
+      <Heading style={styles.readingTitle}>{title}</Heading>
+      <ScrollView style={styles.readingContent}>
+        <Text>{content}</Text>
+      </ScrollView>
+    </VStack>
   );
+}
+
+interface ReaderProps {
+  pageNumber: number;
 }

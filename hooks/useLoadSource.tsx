@@ -1,3 +1,4 @@
+import Page from "@/types/Page";
 import * as FileSystem from "expo-file-system";
 import * as SQLite from "expo-sqlite";
 
@@ -54,13 +55,10 @@ export default async function useLoadSource({
 
 function updateDatabase(pages: string[]) {
   const db = SQLite.openDatabaseSync("ebinder");
-  console.log("open database");
   db.execSync(`
     CREATE VIRTUAL TABLE IF NOT EXISTS pages USING fts4(title TEXT, content TEXT);
     DELETE FROM pages;
   `);
-  console.log("table created");
-  console.log("inserting pages...");
   pages.forEach((page) => {
     const { title, content } = parsePage(page);
     if (content) {
@@ -71,14 +69,6 @@ function updateDatabase(pages: string[]) {
       );
     }
   });
-  console.log(`${pages.length} pages inserted`);
-  const allRows = db.getAllSync(
-    "SELECT title, content FROM pages WHERE rowid <= 2",
-  );
-  for (const row of allRows) {
-    console.log(`title: ${row.title}`);
-    console.log(`content: ${row.content}`);
-  }
 }
 
 function parsePage(page: string): Page {
@@ -116,9 +106,4 @@ interface LoadSourceProps {
   onDownloading?: (progressPercentage: number) => void;
   onLoadComplete?: () => void;
   onUpdatingDatabase?: () => void;
-}
-
-interface Page {
-  content?: string;
-  title?: string;
 }

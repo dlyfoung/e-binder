@@ -18,7 +18,7 @@ export default function Index() {
     <View style={styles.container}>
       <Header />
       <ThemeContext.Provider value="light">
-        <Reader />
+        <Reader pageNumber={1} />
       </ThemeContext.Provider>
     </View>
   );
