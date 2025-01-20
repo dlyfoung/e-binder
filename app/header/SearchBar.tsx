@@ -12,7 +12,7 @@ export default function SearchBar({ onChangeText }: SearchBarProps) {
   const { t } = useTranslation();
 
   return (
-    <Input>
+    <Input size="xl">
       <InputField
         variant="rounded"
         placeholder={`${t("search")}...`}
