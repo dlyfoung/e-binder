@@ -22,6 +22,7 @@ export default function Index() {
         <VStack style={styles.container}>
           <Header />
           <Reader pageNumber={pageNumber} />
+          {/* TODO: bottom navigator: previous/next */}
         </VStack>
       </PageContext.Provider>
     </ThemeContext.Provider>

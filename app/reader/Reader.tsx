@@ -3,7 +3,7 @@ import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
 import useGetPage from "@/hooks/useGetPage";
 import React from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   readingContainer: {

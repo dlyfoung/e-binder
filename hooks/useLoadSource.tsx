@@ -24,6 +24,7 @@ export default async function useLoadSource({
   if (onDownloading) {
     onDownloading(0);
   }
+  // TODO: externalize config
   const downloadResumable = FileSystem.createDownloadResumable(
     "https://docs.google.com/document/u/0/export?format=txt&id=1mtZ0EV1xHzE-0gjbzUU-a_qdr6UHMUD8u8Vq_gEnEFQ",
     FileSystem.documentDirectory + "source.txt",
@@ -38,10 +39,7 @@ export default async function useLoadSource({
     const pageBreak = "________________";
     const pages = textContent.split(pageBreak);
 
-    console.log(`page number=${pages.length}`);
-    // console.log("page 1");
-    // console.log(pages[0]);
-
+    // TODO: incremental update callback
     if (onUpdatingDatabase) {
       onUpdatingDatabase();
       updateDatabase(pages);
@@ -54,6 +52,7 @@ export default async function useLoadSource({
 }
 
 function updateDatabase(pages: string[]) {
+  // TODO: handle errors
   const db = SQLite.openDatabaseSync("ebinder");
   db.execSync(`
     CREATE VIRTUAL TABLE IF NOT EXISTS pages USING fts4(title TEXT, content TEXT);
@@ -69,6 +68,7 @@ function updateDatabase(pages: string[]) {
       );
     }
   });
+  db.closeAsync();
 }
 
 function parsePage(page: string): Page {

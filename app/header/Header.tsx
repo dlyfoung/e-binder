@@ -1,6 +1,7 @@
 import SideMenu from "@/app/menu/SideMenu";
 import { Icon, MenuIcon } from "@/components/ui/icon";
 import { Pressable } from "@/components/ui/pressable";
+import useSearchContent from "@/hooks/useSearchContent";
 import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { PageContext } from "../PageContext";
@@ -34,9 +35,14 @@ export default function Header() {
       <View style={styles.searchBar}>
         <SearchBar
           onChangeText={(text) => {
-            const searchPageNumber = parseInt(text);
-            if (setPageNumber != null) {
-              setPageNumber(searchPageNumber);
+            // TODO: debounce
+            console.log("searching for " + text);
+            const page = useSearchContent(text);
+            if (setPageNumber != null && page?.pageNumber != null) {
+              setPageNumber(page.pageNumber);
+            } else {
+              // TODO not found message
+              console.log("Not found");
             }
           }}
         />
