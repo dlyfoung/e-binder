@@ -6,9 +6,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   progressBar: { backgroundColor: "orange" },
-  progressText: {
-    color: "white",
-  },
 });
 
 export default function ProgressBar({
@@ -17,10 +14,7 @@ export default function ProgressBar({
 }: ProgressBarProps) {
   return (
     <VStack space="lg">
-      <Text
-        size="lg"
-        style={styles.progressText}
-      >{`${text} ${progressPercentage}%`}</Text>
+      <Text size="lg">{`${text} ${progressPercentage}%`}</Text>
       <Progress value={progressPercentage}>
         <ProgressFilledTrack style={styles.progressBar} />
       </Progress>

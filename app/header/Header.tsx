@@ -36,13 +36,12 @@ export default function Header() {
         <SearchBar
           onChangeText={(text) => {
             // TODO: debounce
-            console.log("searching for " + text);
             const page = useSearchContent(text);
             if (setPageNumber != null && page?.pageNumber != null) {
               setPageNumber(page.pageNumber);
             } else {
               // TODO not found message
-              console.log("Not found");
+              console.log(`${text} not found`);
             }
           }}
         />

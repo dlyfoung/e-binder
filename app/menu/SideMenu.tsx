@@ -9,13 +9,13 @@ import {
 } from "@/components/ui/drawer";
 import { Heading } from "@/components/ui/heading";
 import { Icon, RepeatIcon, SlashIcon } from "@/components/ui/icon";
+import { Modal, ModalBackdrop, ModalContent } from "@/components/ui/modal";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
 import useLoadSource from "@/hooks/useLoadSource";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
-import FocusedMessage from "../components/FocusedMessage";
 import ProgressBar from "../components/ProgressBar";
 
 const styles = StyleSheet.create({
@@ -76,14 +76,15 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
 
   return (
     <>
-      {showProgress && (
-        <FocusedMessage>
+      <Modal isOpen={showProgress}>
+        <ModalBackdrop />
+        <ModalContent>
           <ProgressBar
             progressPercentage={progressPercentage}
             text={t(progressStep)}
           />
-        </FocusedMessage>
-      )}
+        </ModalContent>
+      </Modal>
       <Drawer closeOnOverlayClick={true} isOpen={show} size="lg">
         <DrawerBackdrop />
         <DrawerContent>
