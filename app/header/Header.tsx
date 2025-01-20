@@ -1,8 +1,9 @@
 import SideMenu from "@/app/menu/SideMenu";
 import { Icon, MenuIcon } from "@/components/ui/icon";
 import { Pressable } from "@/components/ui/pressable";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { PageContext } from "../PageContext";
 import SearchBar from "./SearchBar";
 
 const styles = StyleSheet.create({
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
 });
 
 export default function Header() {
+  const setPageNumber = useContext(PageContext)?.setPageNumber;
   const [showSideMenu, setShowSideMenu] = useState(false);
 
   function openSideMenu() {
@@ -30,7 +32,14 @@ export default function Header() {
       </Pressable>
       <SideMenu onClose={() => setShowSideMenu(false)} show={showSideMenu} />
       <View style={styles.searchBar}>
-        <SearchBar />
+        <SearchBar
+          onChangeText={(text) => {
+            const searchPageNumber = parseInt(text);
+            if (setPageNumber != null) {
+              setPageNumber(searchPageNumber);
+            }
+          }}
+        />
       </View>
     </View>
   );

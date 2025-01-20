@@ -8,15 +8,23 @@ const styles = StyleSheet.create({
   searchIcon: { paddingRight: 10 },
 });
 
-export default function SearchBar() {
+export default function SearchBar({ onChangeText }: SearchBarProps) {
   const { t } = useTranslation();
 
   return (
     <Input>
-      <InputField variant="rounded" placeholder={`${t("search")}...`} />
+      <InputField
+        variant="rounded"
+        placeholder={`${t("search")}...`}
+        onChangeText={onChangeText}
+      />
       <InputSlot style={styles.searchIcon}>
         <InputIcon as={SearchIcon} />
       </InputSlot>
     </Input>
   );
+}
+
+interface SearchBarProps {
+  onChangeText?: (text: string) => void;
 }

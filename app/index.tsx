@@ -1,7 +1,8 @@
 import { VStack } from "@/components/ui/vstack";
 import "@/i18n";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
+import { PageContext } from "./PageContext";
 import { ThemeContext } from "./ThemeContext";
 import Header from "./header/Header";
 import Reader from "./reader/Reader";
@@ -13,12 +14,16 @@ const styles = StyleSheet.create({
 });
 
 export default function Index() {
+  const [pageNumber, setPageNumber] = useState(1);
+
   return (
     <ThemeContext.Provider value="light">
-      <VStack style={styles.container}>
-        <Header />
-        <Reader pageNumber={1} />
-      </VStack>
+      <PageContext.Provider value={{ pageNumber, setPageNumber }}>
+        <VStack style={styles.container}>
+          <Header />
+          <Reader pageNumber={pageNumber} />
+        </VStack>
+      </PageContext.Provider>
     </ThemeContext.Provider>
   );
 }
