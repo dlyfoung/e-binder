@@ -1,6 +1,6 @@
-# Welcome to I-Worship
+# Welcome to E-Binder
 
-I-Worship is an mobile application to help churches to access resources quickly (such as lyrics). The documents can be loaded via a Google document. The import function will load a page as an entry using the first line as "title."
+E-Binder is an mobile application transforming a document into a "binder" with advanced search features. The binder page can be loaded via a Google document. An example of usage is helping churches to access resources quickly (such as lyrics). The import function will load a page as an entry using the first line as "title."
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
@@ -26,7 +26,6 @@ To test the application, you can use the `expo` mobile app or use an emulator (s
 The project uses React native with [`gluestack-ui`'s components](https://gluestack.io).
 
 * `/app` contains the application code.
-* `/components/ui/iworship` contains the custom components used by the application code.
 
 
 To lint and format code, use:

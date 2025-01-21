@@ -12,7 +12,6 @@ export default [
       "*.config.js",
       "*.d.ts",
       "components/ui/**/*",
-      "!components/ui/iworship/**/*",
     ],
     // TODO
     // rules: {

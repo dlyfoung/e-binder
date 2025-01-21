@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "i-worship",
-    "slug": "i-worship",
+    "name": "e-binder",
+    "slug": "e-binder",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
