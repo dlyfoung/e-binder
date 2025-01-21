@@ -2,22 +2,33 @@ import { openDatabase } from "./db-utils";
 
 export default function useDeleteSource({
   onDeletionComplete,
-  onDeletionStart,
-}: useDeleteSourceProps) {
+  updateProgress,
+}: UseDeleteSourceProps) {
+  if (updateProgress) {
+    updateProgress("initiating", 0);
+  }
   const db = openDatabase();
 
-  if (onDeletionStart) {
-    onDeletionStart();
+  if (updateProgress) {
+    updateProgress("deleting", 0);
   }
 
   db.runSync(`DELETE FROM pages;`);
 
+  if (updateProgress) {
+    updateProgress("complete", 100);
+  }
   if (onDeletionComplete) {
     onDeletionComplete();
   }
 }
 
-interface useDeleteSourceProps {
+interface UseDeleteSourceProps {
   onDeletionComplete?: () => void;
-  onDeletionStart?: () => void;
+  updateProgress?: (
+    progressStep: WipeDataStep,
+    progressPercentage: number,
+  ) => void;
 }
+
+export type WipeDataStep = "initiating" | "deleting" | "complete";

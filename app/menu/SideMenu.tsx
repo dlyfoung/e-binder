@@ -12,8 +12,8 @@ import { Icon, RepeatIcon, SlashIcon } from "@/components/ui/icon";
 import { Modal, ModalBackdrop, ModalContent } from "@/components/ui/modal";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
-import useDeleteSource from "@/hooks/useDeleteSource";
-import useLoadSource from "@/hooks/useLoadSource";
+import useDeleteSource, { WipeDataStep } from "@/hooks/useDeleteSource";
+import useLoadSource, { ReloadingStep } from "@/hooks/useLoadSource";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
@@ -51,47 +51,40 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
     }
   }
 
-  function startProgress(step: ReloadingStep | WipeDataStep) {
-    setProgressStep(step);
-    setProgressPercentage(0);
-    setShowProgress(true);
+  function updateProgress(
+    progressStep: ReloadingStep | WipeDataStep,
+    progressPercentage: number,
+  ) {
+    setProgressStep(progressStep);
+    setProgressPercentage(progressPercentage);
   }
 
-  function completeProgress() {
-    setProgressStep("complete");
-    setProgressPercentage(100);
+  function completeProgress(pageNumber: number) {
     // give a "feel" that the process is complete
     setTimeout(() => {
       setShowProgress(false);
       closeSideMenu();
     }, 500);
+
+    if (setPageNumber) {
+      setPageNumber(pageNumber);
+    }
   }
 
-  async function reloadDocument() {
-    startProgress("initiating");
+  function reloadDocument() {
+    setShowProgress(true);
     useLoadSource({
-      onDownloading: (progress) => {
-        setProgressStep("downloading");
-        setProgressPercentage(progress);
-      },
-      onLoadComplete: completeProgress,
-      onUpdatingDatabase: () => {
-        setProgressStep("updating-database");
-        setProgressPercentage(0);
-      },
+      onLoadingComplete: () => completeProgress(1),
+      updateProgress,
     });
   }
 
   function wipeData() {
+    setShowProgress(true);
     useDeleteSource({
-      onDeletionComplete: () => {
-        completeProgress();
-        if (setPageNumber) {
-          // clear reader content
-          setPageNumber(-1);
-        }
-      },
-      onDeletionStart: () => startProgress("deleting"),
+      // clear reader content
+      onDeletionComplete: () => completeProgress(0),
+      updateProgress,
     });
   }
 
@@ -137,12 +130,3 @@ interface SideMenuProps {
   onClose?: () => void;
   show: boolean;
 }
-
-// TODO: move into hooks
-type ReloadingStep =
-  | "initiating"
-  | "downloading"
-  | "updating-database"
-  | "complete";
-
-type WipeDataStep = "initiating" | "deleting" | "complete";

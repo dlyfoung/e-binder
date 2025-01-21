@@ -3,10 +3,13 @@ import * as FileSystem from "expo-file-system";
 import { openDatabase } from "./db-utils";
 
 export default async function useLoadSource({
-  onDownloading,
-  onLoadComplete,
-  onUpdatingDatabase,
+  onLoadingComplete,
+  updateProgress,
 }: LoadSourceProps) {
+  if (updateProgress) {
+    updateProgress("initiating", 0);
+  }
+
   const callback = (downloadProgress: FileSystem.DownloadProgressData) => {
     // downloadProgress.totalBytesExpectedToWrite can be -1 if the response's content-length
     // is not defined. https://github.com/expo/expo/issues/7523#issuecomment-606000669
@@ -16,13 +19,13 @@ export default async function useLoadSource({
           downloadProgress.totalBytesExpectedToWrite
         : 100;
 
-    if (onDownloading) {
-      onDownloading(progress);
+    if (updateProgress) {
+      updateProgress("downloading", progress);
     }
   };
 
-  if (onDownloading) {
-    onDownloading(0);
+  if (updateProgress) {
+    updateProgress("downloading", 0);
   }
   // TODO: externalize config
   const downloadResumable = FileSystem.createDownloadResumable(
@@ -40,13 +43,16 @@ export default async function useLoadSource({
     const pages = textContent.split(pageBreak);
 
     // TODO: incremental update callback
-    if (onUpdatingDatabase) {
-      onUpdatingDatabase();
-      updateDatabase(pages);
+    if (updateProgress) {
+      updateProgress("updating-database", 50);
     }
+    updateDatabase(pages);
 
-    if (onLoadComplete) {
-      onLoadComplete();
+    if (updateProgress) {
+      updateProgress("complete", 100);
+    }
+    if (onLoadingComplete) {
+      onLoadingComplete();
     }
   });
 }
@@ -101,7 +107,15 @@ function parsePage(page: string): Page {
 }
 
 interface LoadSourceProps {
-  onDownloading?: (progressPercentage: number) => void;
-  onLoadComplete?: () => void;
-  onUpdatingDatabase?: () => void;
+  onLoadingComplete?: () => void;
+  updateProgress?: (
+    progressStep: ReloadingStep,
+    progressPercentage: number,
+  ) => void;
 }
+
+export type ReloadingStep =
+  | "initiating"
+  | "downloading"
+  | "updating-database"
+  | "complete";
