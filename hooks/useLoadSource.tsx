@@ -54,6 +54,8 @@ export default async function useLoadSource({
 function updateDatabase(pages: string[]) {
   const db = openDatabase();
   db.runSync(`DELETE FROM pages;`);
+
+  // TODO: batch and incremental progress
   pages.forEach((page) => {
     const { title, content } = parsePage(page);
     if (content) {

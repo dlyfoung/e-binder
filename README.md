@@ -35,3 +35,10 @@ To lint and format code, use:
    ```
 
 The application uses SQLite has offline database to manage the source document.
+
+## Roadmap
+- view "all" pages (or at least a defined number of pages)
+- bottom navigation: prev | next
+- updatable font size
+- theme colors?
+- load from different sources / formats

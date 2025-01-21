@@ -12,11 +12,13 @@ import { Icon, RepeatIcon, SlashIcon } from "@/components/ui/icon";
 import { Modal, ModalBackdrop, ModalContent } from "@/components/ui/modal";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
+import useDeleteSource from "@/hooks/useDeleteSource";
 import useLoadSource from "@/hooks/useLoadSource";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
 import ProgressBar from "../components/ProgressBar";
+import { PageContext } from "../PageContext";
 
 const styles = StyleSheet.create({
   menuContent: {
@@ -29,16 +31,19 @@ const styles = StyleSheet.create({
   menuItem: {
     alignItems: "center",
     flexDirection: "row",
-    marginBottom: 3,
-    marginTop: 3,
+    marginBottom: 7,
+    marginTop: 7,
   },
 });
 
 export default function SideMenu({ onClose, show }: SideMenuProps) {
   const { t } = useTranslation();
+  const setPageNumber = useContext(PageContext)?.setPageNumber;
   const [showProgress, setShowProgress] = useState(false);
   const [progressPercentage, setProgressPercentage] = useState(0);
-  const [progressStep, setProgressStep] = useState<ReloadingStep>("initiating");
+  const [progressStep, setProgressStep] = useState<
+    ReloadingStep | WipeDataStep
+  >("initiating");
 
   function closeSideMenu() {
     if (onClose) {
@@ -46,23 +51,30 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
     }
   }
 
-  async function reloadDocument() {
+  function startProgress(step: ReloadingStep | WipeDataStep) {
+    setProgressStep(step);
     setProgressPercentage(0);
     setShowProgress(true);
+  }
+
+  function completeProgress() {
+    setProgressStep("complete");
+    setProgressPercentage(100);
+    // give a "feel" that the process is complete
+    setTimeout(() => {
+      setShowProgress(false);
+      closeSideMenu();
+    }, 500);
+  }
+
+  async function reloadDocument() {
+    startProgress("initiating");
     useLoadSource({
       onDownloading: (progress) => {
         setProgressStep("downloading");
         setProgressPercentage(progress);
       },
-      onLoadComplete: () => {
-        setProgressStep("complete");
-        setProgressPercentage(100);
-        // give a "feel" that the process is complete
-        setTimeout(() => {
-          setShowProgress(false);
-          closeSideMenu();
-        }, 500);
-      },
+      onLoadComplete: completeProgress,
       onUpdatingDatabase: () => {
         setProgressStep("updating-database");
         setProgressPercentage(0);
@@ -71,7 +83,16 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
   }
 
   function wipeData() {
-    closeSideMenu();
+    useDeleteSource({
+      onDeletionComplete: () => {
+        completeProgress();
+        if (setPageNumber) {
+          // clear reader content
+          setPageNumber(-1);
+        }
+      },
+      onDeletionStart: () => startProgress("deleting"),
+    });
   }
 
   return (
@@ -117,8 +138,11 @@ interface SideMenuProps {
   show: boolean;
 }
 
+// TODO: move into hooks
 type ReloadingStep =
   | "initiating"
   | "downloading"
   | "updating-database"
   | "complete";
+
+type WipeDataStep = "initiating" | "deleting" | "complete";

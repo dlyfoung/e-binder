@@ -3,6 +3,7 @@ import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
 import useGetPage from "@/hooks/useGetPage";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView, StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -21,9 +22,10 @@ const styles = StyleSheet.create({
 });
 
 export default function Reader({ pageNumber }: ReaderProps) {
+  const { t } = useTranslation();
   const page = useGetPage(pageNumber);
   const title = page?.title ?? "";
-  const content = page?.content ?? "";
+  const content = page?.content ?? t("no-content");
 
   return (
     <VStack style={styles.readingContainer}>

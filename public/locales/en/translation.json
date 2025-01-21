@@ -1,8 +1,10 @@
 {
     "close": "Close",
     "complete": "Complete",
+    "deleting": "Deleting",
     "downloading": "Downloading",
     "initiating": "Initiating",
+    "no-content": "No content found. Please import a document.",
     "reload-document": "Reload document",
     "reloading": "Reloading",
     "search": "Search",
