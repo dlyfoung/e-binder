@@ -1,4 +1,5 @@
 import { VStack } from "@/components/ui/vstack";
+import { openDatabase } from "@/hooks/db-utils";
 import "@/i18n";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
@@ -13,8 +14,17 @@ const styles = StyleSheet.create({
   },
 });
 
+function initDatabase() {
+  const db = openDatabase();
+  db.execSync(`
+    CREATE VIRTUAL TABLE IF NOT EXISTS pages USING fts4(title TEXT, content TEXT);
+  `);
+}
+
 export default function Index() {
   const [pageNumber, setPageNumber] = useState(1);
+
+  initDatabase();
 
   return (
     <ThemeContext.Provider value="light">

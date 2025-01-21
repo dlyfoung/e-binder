@@ -1,6 +1,6 @@
 import Page from "@/types/Page";
 import * as FileSystem from "expo-file-system";
-import * as SQLite from "expo-sqlite";
+import { openDatabase } from "./db-utils";
 
 export default async function useLoadSource({
   onDownloading,
@@ -52,12 +52,8 @@ export default async function useLoadSource({
 }
 
 function updateDatabase(pages: string[]) {
-  // TODO: handle errors
-  const db = SQLite.openDatabaseSync("ebinder");
-  db.execSync(`
-    CREATE VIRTUAL TABLE IF NOT EXISTS pages USING fts4(title TEXT, content TEXT);
-    DELETE FROM pages;
-  `);
+  const db = openDatabase();
+  db.runSync(`DELETE FROM pages;`);
   pages.forEach((page) => {
     const { title, content } = parsePage(page);
     if (content) {
