@@ -7,12 +7,7 @@ import tseslint from "typescript-eslint";
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    ignores: [
-      "/*",
-      "*.config.js",
-      "*.d.ts",
-      "components/ui/**/*",
-    ],
+    ignores: ["/*", "*.config.js", "*.d.ts", "components/ui/**/*"],
     // TODO
     // rules: {
     //   "sort-keys": ["error", "asc", { natural: true }],
