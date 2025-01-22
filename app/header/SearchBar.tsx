@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
 });
 
 const noResultKey = "no-result";
+const moreResultKey = "more-results";
 const maxResults = 10;
 
 export default function SearchBar({
@@ -40,7 +41,7 @@ export default function SearchBar({
       const noResult = t("no-result");
       return (
         <MenuItem key={noResultKey} textValue={noResult}>
-          <MenuItemLabel size="sm" style={styles.searchResultDisabled}>
+          <MenuItemLabel style={styles.searchResultDisabled}>
             {noResult}
           </MenuItemLabel>
         </MenuItem>
@@ -50,23 +51,39 @@ export default function SearchBar({
     const isTruncated = searchResults.length > maxResults;
     const numResultsToDisplay = isTruncated ? maxResults : searchResults.length;
     const resultsToDisplay = searchResults.slice(0, numResultsToDisplay);
-    // TODO add more result message
-
-    return resultsToDisplay.map((result) => {
+    const resultMenuItems = resultsToDisplay.map((result, index) => {
       return (
         <React.Fragment key={result.index}>
           <MenuItem key={result.index} textValue={result.text}>
-            <MenuItemLabel size="sm">{result.text}</MenuItemLabel>
+            <MenuItemLabel>{result.text}</MenuItemLabel>
           </MenuItem>
-          <MenuSeparator />
+          {index < numResultsToDisplay - 1 && <MenuSeparator />}
         </React.Fragment>
       );
     });
+
+    if (isTruncated) {
+      const moreResult = t("more-results", {
+        count: searchResults.length - maxResults,
+      });
+      resultMenuItems.push(
+        <React.Fragment key={moreResultKey}>
+          <MenuSeparator />
+          <MenuItem key={moreResultKey} textValue={moreResult}>
+            <MenuItemLabel style={styles.searchResultDisabled}>
+              {moreResult}
+            </MenuItemLabel>
+          </MenuItem>
+        </React.Fragment>,
+      );
+    }
+
+    return resultMenuItems;
   }
 
   return (
     <Menu
-      disabledKeys={[noResultKey]}
+      disabledKeys={[moreResultKey, noResultKey]}
       isOpen={showResults}
       onClose={closeResults}
       onOpen={openResults}
