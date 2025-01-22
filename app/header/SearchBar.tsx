@@ -12,6 +12,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   searchIcon: { paddingRight: 10 },
+  searchResultDisabled: { fontStyle: "italic" },
 });
 
 const noResultKey = "no-result";
@@ -39,7 +40,9 @@ export default function SearchBar({
       const noResult = t("no-result");
       return (
         <MenuItem key={noResultKey} textValue={noResult}>
-          <MenuItemLabel size="sm">{noResult}</MenuItemLabel>
+          <MenuItemLabel size="sm" style={styles.searchResultDisabled}>
+            {noResult}
+          </MenuItemLabel>
         </MenuItem>
       );
     }
@@ -51,12 +54,12 @@ export default function SearchBar({
 
     return resultsToDisplay.map((result) => {
       return (
-        <>
+        <React.Fragment key={result.index}>
           <MenuItem key={result.index} textValue={result.text}>
             <MenuItemLabel size="sm">{result.text}</MenuItemLabel>
           </MenuItem>
           <MenuSeparator />
-        </>
+        </React.Fragment>
       );
     });
   }
@@ -70,6 +73,7 @@ export default function SearchBar({
       offset={-50}
       onSelectionChange={(keys) => {
         if (onSelectResult && keys !== "all") {
+          // single selection mode
           const selected = Array.from(keys as Set<number>)[0];
           onSelectResult(selected);
         }
