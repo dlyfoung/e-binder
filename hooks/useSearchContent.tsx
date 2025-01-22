@@ -1,14 +1,13 @@
 import Page from "@/types/Page";
 import { openDatabase } from "./db-utils";
 
-export default function useSearchContent(text: string) {
+export default function useSearchContent(text: string): Page[] {
   if (text == null || text === "") {
-    return null;
+    return [];
   }
 
   const db = openDatabase();
-  // TODO: multi results
-  const found = db.getFirstSync<Page>(
+  const found = db.getAllSync<Page>(
     "SELECT rowid as pageNumber, title, content FROM pages WHERE title MATCH ?",
     `${text}*`,
   );

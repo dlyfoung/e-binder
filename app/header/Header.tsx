@@ -2,6 +2,7 @@ import SideMenu from "@/app/menu/SideMenu";
 import { Icon, MenuIcon } from "@/components/ui/icon";
 import { Pressable } from "@/components/ui/pressable";
 import useSearchContent from "@/hooks/useSearchContent";
+import Page from "@/types/Page";
 import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { PageContext } from "../PageContext";
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
 export default function Header() {
   const setPageNumber = useContext(PageContext)?.setPageNumber;
   const [showSideMenu, setShowSideMenu] = useState(false);
+  const [searchResults, setSearchResults] = useState<Page[]>([]);
 
   function openSideMenu() {
     setShowSideMenu(true);
@@ -36,14 +38,20 @@ export default function Header() {
         <SearchBar
           onChangeText={(text) => {
             // TODO: debounce
-            const page = useSearchContent(text);
-            if (setPageNumber != null && page?.pageNumber != null) {
-              setPageNumber(page.pageNumber);
-            } else {
-              // TODO not found message
-              console.log(`${text} not found`);
+            const pages = useSearchContent(text);
+            setSearchResults(pages);
+          }}
+          onSelectResult={(pageNumber) => {
+            if (setPageNumber) {
+              setPageNumber(pageNumber);
             }
           }}
+          searchResults={searchResults.map((result) => {
+            return {
+              index: result.pageNumber ?? 0,
+              text: result.title ?? "",
+            };
+          })}
         />
       </View>
     </View>
