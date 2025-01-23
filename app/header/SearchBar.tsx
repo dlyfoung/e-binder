@@ -12,12 +12,13 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   searchIcon: { paddingRight: 10 },
+  searchInput: { padding: 10 },
   searchResultDisabled: { fontStyle: "italic" },
 });
 
 const noResultKey = "no-result";
 const moreResultKey = "more-results";
-const maxResults = 10;
+const maxResults = 7;
 
 export default function SearchBar({
   onChangeText,
@@ -26,13 +27,24 @@ export default function SearchBar({
 }: SearchBarProps) {
   const { t } = useTranslation();
   const [showResults, setShowResults] = useState(false);
+  // defines if the user is actually searching
+  const [isSearching, setIsSearching] = useState(false);
 
   function openResults() {
-    setShowResults(true);
+    setShowResults(isSearching);
   }
 
   function closeResults() {
     setShowResults(false);
+  }
+
+  function changeSearchText(text: string) {
+    const isSearchTextNotEmpty = text.trim() !== "";
+    setIsSearching(isSearchTextNotEmpty);
+    if (onChangeText) {
+      onChangeText(text);
+    }
+    setShowResults(isSearchTextNotEmpty);
   }
 
   function buildSearchResults(searchResults: SearchResult[]) {
@@ -41,7 +53,7 @@ export default function SearchBar({
       const noResult = t("no-result");
       return (
         <MenuItem key={noResultKey} textValue={noResult}>
-          <MenuItemLabel style={styles.searchResultDisabled}>
+          <MenuItemLabel style={styles.searchResultDisabled} size="xl">
             {noResult}
           </MenuItemLabel>
         </MenuItem>
@@ -55,7 +67,7 @@ export default function SearchBar({
       return (
         <React.Fragment key={result.index}>
           <MenuItem key={result.index} textValue={result.text}>
-            <MenuItemLabel>{result.text}</MenuItemLabel>
+            <MenuItemLabel size="xl">{result.text}</MenuItemLabel>
           </MenuItem>
           {index < numResultsToDisplay - 1 && <MenuSeparator />}
         </React.Fragment>
@@ -70,7 +82,7 @@ export default function SearchBar({
         <React.Fragment key={moreResultKey}>
           <MenuSeparator />
           <MenuItem key={moreResultKey} textValue={moreResult}>
-            <MenuItemLabel style={styles.searchResultDisabled}>
+            <MenuItemLabel size="xl" style={styles.searchResultDisabled}>
               {moreResult}
             </MenuItemLabel>
           </MenuItem>
@@ -101,9 +113,10 @@ export default function SearchBar({
         return (
           <Input size="xl">
             <InputField
+              style={styles.searchInput}
               variant="rounded"
               placeholder={`${t("search")}...`}
-              onChangeText={onChangeText}
+              onChangeText={changeSearchText}
               {...triggerProps}
             />
             <InputSlot style={styles.searchIcon}>
@@ -113,7 +126,8 @@ export default function SearchBar({
         );
       }}
     >
-      {buildSearchResults(searchResults === undefined ? [] : searchResults)}
+      {isSearching &&
+        buildSearchResults(searchResults === undefined ? [] : searchResults)}
     </Menu>
   );
 }
