@@ -6,6 +6,7 @@ import {
   MenuItemLabel,
   MenuSeparator,
 } from "@/components/ui/menu";
+import { Pressable } from "@/components/ui/pressable";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
@@ -139,7 +140,9 @@ export default function SearchBar({
               {...triggerProps}
             />
             <InputSlot style={styles.searchIcon}>
-              <InputIcon as={SearchIcon} />
+              <Pressable onPress={openResults}>
+                <InputIcon as={SearchIcon} />
+              </Pressable>
             </InputSlot>
           </Input>
         );
