@@ -3,7 +3,7 @@ import { openDatabase } from "@/hooks/db-utils";
 import "@/i18n";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
-import { PageContext } from "./PageContext";
+import { PageContext, PageNumber } from "./PageContext";
 import { ThemeContext } from "./ThemeContext";
 import Header from "./reader/Header";
 import Reader from "./reader/Reader";
@@ -22,7 +22,7 @@ function initDatabase() {
 }
 
 export default function Index() {
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState<PageNumber>(1);
 
   initDatabase();
 

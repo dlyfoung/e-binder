@@ -8,7 +8,7 @@ import {
   DrawerHeader,
 } from "@/components/ui/drawer";
 import { Heading } from "@/components/ui/heading";
-import { Icon, RepeatIcon, SlashIcon } from "@/components/ui/icon";
+import { EyeIcon, Icon, RepeatIcon, SlashIcon } from "@/components/ui/icon";
 import { Modal, ModalBackdrop, ModalContent } from "@/components/ui/modal";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
@@ -71,6 +71,13 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
     }
   }
 
+  function viewAll() {
+    if (setPageNumber) {
+      setPageNumber("all");
+    }
+    closeSideMenu();
+  }
+
   function reloadDocument() {
     setShowProgress(true);
     useLoadSource({
@@ -106,6 +113,10 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
             <Heading>{t("settings")}</Heading>
           </DrawerHeader>
           <DrawerBody style={styles.menuContent}>
+            <Pressable onPress={viewAll} style={styles.menuItem}>
+              <Icon as={EyeIcon} style={styles.menuIcon} />
+              <Text>{t("view-all")}</Text>
+            </Pressable>
             <Pressable onPress={reloadDocument} style={styles.menuItem}>
               <Icon as={RepeatIcon} style={styles.menuIcon} />
               <Text>{t("reload-document")}</Text>
