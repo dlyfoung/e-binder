@@ -37,7 +37,6 @@ export default function Header() {
       <View style={styles.searchBar}>
         <SearchBar
           onChangeText={(text) => {
-            // TODO: debounce
             const pages = useSearchContent(text);
             setSearchResults(pages);
           }}

@@ -11,6 +11,7 @@ export default [
     // TODO
     // rules: {
     //   "sort-keys": ["error", "asc", { natural: true }],
+    // "react-hooks/exhaustive-deps"
     // },
   },
   { languageOptions: { globals: globals.browser } },

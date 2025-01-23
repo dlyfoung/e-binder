@@ -20,6 +20,20 @@ const noResultKey = "no-result";
 const moreResultKey = "more-results";
 const maxResults = 7;
 
+let timeoutId: number;
+
+const debounceSearch = (
+  searchFunction: (text: string) => void,
+  delay: number,
+) => {
+  return (text: string) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => {
+      searchFunction(text);
+    }, delay);
+  };
+};
+
 export default function SearchBar({
   onChangeText,
   onSelectResult,
@@ -38,7 +52,12 @@ export default function SearchBar({
     setShowResults(false);
   }
 
-  function changeSearchText(text: string) {
+  function onSearchTextChange(text: string) {
+    const debouncedSearchFunction = debounceSearch(search, 300);
+    debouncedSearchFunction(text);
+  }
+
+  function search(text: string) {
     const isSearchTextNotEmpty = text.trim() !== "";
     setIsSearching(isSearchTextNotEmpty);
     if (onChangeText) {
@@ -116,7 +135,7 @@ export default function SearchBar({
               style={styles.searchInput}
               variant="rounded"
               placeholder={`${t("search")}...`}
-              onChangeText={changeSearchText}
+              onChangeText={onSearchTextChange}
               {...triggerProps}
             />
             <InputSlot style={styles.searchIcon}>
