@@ -37,7 +37,7 @@ To lint and format code, use:
 The application uses SQLite has offline database to manage the source document.
 
 ## Roadmap
-- view "all" pages (or at least a defined number of pages)
+- view "all" pages: Paginate to avoid too many pages
 - bottom navigation: prev | next
 - settings: theme, font size, title per page or not, auto-update if there is internet connection?
 - load from different sources / formats

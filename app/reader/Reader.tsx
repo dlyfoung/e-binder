@@ -15,8 +15,6 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   readingContainer: {
-    alignItems: "center",
-    justifyContent: "center",
     paddingBottom: 40,
     width: "100%",
   },
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
 });
 
 // TODO: paginate?
-const maxPages = 3;
+const maxPages = 300;
 
 export default function Reader({ pageNumber }: ReaderProps) {
   const { t } = useTranslation();
