@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { PageContext, PageNumber } from "./PageContext";
 import { ThemeContext } from "./ThemeContext";
-import Header from "./reader/Header";
+import Header from "./header/Header";
 import Reader from "./reader/Reader";
 
 const styles = StyleSheet.create({

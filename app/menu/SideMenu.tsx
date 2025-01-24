@@ -1,4 +1,5 @@
 import { Button, ButtonText } from "@/components/ui/button";
+import { Divider } from "@/components/ui/divider";
 import {
   Drawer,
   DrawerBackdrop,
@@ -8,7 +9,13 @@ import {
   DrawerHeader,
 } from "@/components/ui/drawer";
 import { Heading } from "@/components/ui/heading";
-import { EyeIcon, Icon, RepeatIcon, SlashIcon } from "@/components/ui/icon";
+import {
+  EyeIcon,
+  Icon,
+  MenuIcon,
+  RepeatIcon,
+  SlashIcon,
+} from "@/components/ui/icon";
 import { Modal, ModalBackdrop, ModalContent } from "@/components/ui/modal";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
@@ -21,6 +28,9 @@ import ProgressBar from "../components/ProgressBar";
 import { PageContext } from "../PageContext";
 
 const styles = StyleSheet.create({
+  divider: {
+    marginVertical: 10,
+  },
   menuContent: {
     marginBottom: 20,
     marginTop: 20,
@@ -78,6 +88,10 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
     closeSideMenu();
   }
 
+  function viewTableOfContent() {
+    closeSideMenu();
+  }
+
   function reloadDocument() {
     setShowProgress(true);
     useLoadSource({
@@ -113,10 +127,15 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
             <Heading>{t("settings")}</Heading>
           </DrawerHeader>
           <DrawerBody style={styles.menuContent}>
+            <Pressable onPress={viewTableOfContent} style={styles.menuItem}>
+              <Icon as={MenuIcon} style={styles.menuIcon} />
+              <Text>{t("view-table-content")}</Text>
+            </Pressable>
             <Pressable onPress={viewAll} style={styles.menuItem}>
               <Icon as={EyeIcon} style={styles.menuIcon} />
               <Text>{t("view-all")}</Text>
             </Pressable>
+            <Divider style={styles.divider} />
             <Pressable onPress={reloadDocument} style={styles.menuItem}>
               <Icon as={RepeatIcon} style={styles.menuIcon} />
               <Text>{t("reload-document")}</Text>
