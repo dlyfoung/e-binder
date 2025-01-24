@@ -3,3 +3,5 @@ export default interface Page {
   pageNumber?: number;
   title?: string;
 }
+
+export type PageSummary = Omit<Page, "content">;

@@ -26,6 +26,7 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
 import ProgressBar from "../components/ProgressBar";
 import { PageContext } from "../PageContext";
+import TableContent from "../tableContent/TableContent";
 
 const styles = StyleSheet.create({
   divider: {
@@ -54,6 +55,7 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
   const [progressStep, setProgressStep] = useState<
     ReloadingStep | WipeDataStep
   >("initiating");
+  const [showTableContent, setShowTableContent] = useState(false);
 
   function closeSideMenu() {
     if (onClose) {
@@ -89,6 +91,7 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
   }
 
   function viewTableOfContent() {
+    setShowTableContent(true);
     closeSideMenu();
   }
 
@@ -120,6 +123,10 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
           />
         </ModalContent>
       </Modal>
+      <TableContent
+        onClose={() => setShowTableContent(false)}
+        show={showTableContent}
+      />
       <Drawer closeOnOverlayClick={true} isOpen={show} size="lg">
         <DrawerBackdrop />
         <DrawerContent>
