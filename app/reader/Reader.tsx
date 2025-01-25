@@ -46,7 +46,7 @@ export default function Reader({ pageNumber }: ReaderProps) {
           return (
             <React.Fragment key={key}>
               <Heading style={styles.readingTitle}>{title}</Heading>
-              <Text>{content}</Text>
+              <Text size="lg">{content}</Text>
               {page && <Divider style={styles.divider} />}
             </React.Fragment>
           );

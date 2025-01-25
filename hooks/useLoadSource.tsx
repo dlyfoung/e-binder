@@ -1,13 +1,22 @@
 import Page from "@/types/Page";
+import NetInfo from "@react-native-community/netinfo";
 import * as FileSystem from "expo-file-system";
 import { openDatabase } from "./db-utils";
 
 export default async function useLoadSource({
+  onInternetConnectionError: onInternetConnectionError,
   onLoadingComplete,
   updateProgress,
 }: LoadSourceProps) {
   if (updateProgress) {
     updateProgress("initiating", 0);
+  }
+
+  // check internet connection
+  const { isConnected } = await NetInfo.fetch();
+  if (!isConnected) {
+    onInternetConnectionError();
+    return;
   }
 
   const callback = (downloadProgress: FileSystem.DownloadProgressData) => {
@@ -107,6 +116,7 @@ function parsePage(page: string): Page {
 }
 
 interface LoadSourceProps {
+  onInternetConnectionError: () => void;
   onLoadingComplete?: () => void;
   updateProgress?: (
     progressStep: ReloadingStep,

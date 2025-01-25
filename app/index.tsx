@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
   },
 });
 
-function initDatabase() {
+async function initDatabase() {
   const db = openDatabase();
-  db.execSync(`
+  db.execAsync(`
     CREATE VIRTUAL TABLE IF NOT EXISTS pages USING fts4(title TEXT, content TEXT);
   `);
 }

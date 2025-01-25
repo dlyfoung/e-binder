@@ -24,6 +24,7 @@ import useLoadSource, { ReloadingStep } from "@/hooks/useLoadSource";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
+import InternetConnectionError from "../components/InternetConnectionError";
 import ProgressBar from "../components/ProgressBar";
 import { PageContext } from "../PageContext";
 import TableContent from "../tableContent/TableContent";
@@ -56,6 +57,8 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
     ReloadingStep | WipeDataStep
   >("initiating");
   const [showTableContent, setShowTableContent] = useState(false);
+  const [showInternetConnectionError, setShowInternetConnectionError] =
+    useState(false);
 
   function closeSideMenu() {
     if (onClose) {
@@ -98,6 +101,10 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
   function reloadDocument() {
     setShowProgress(true);
     useLoadSource({
+      onInternetConnectionError: () => {
+        setShowProgress(false);
+        setShowInternetConnectionError(true);
+      },
       onLoadingComplete: () => completeProgress(1),
       updateProgress,
     });
@@ -114,15 +121,22 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
 
   return (
     <>
-      <Modal isOpen={showProgress}>
-        <ModalBackdrop />
-        <ModalContent>
-          <ProgressBar
-            progressPercentage={progressPercentage}
-            text={t(progressStep)}
-          />
-        </ModalContent>
-      </Modal>
+      {showInternetConnectionError ? (
+        <InternetConnectionError
+          show={showInternetConnectionError}
+          onClose={() => setShowInternetConnectionError(false)}
+        />
+      ) : (
+        <Modal isOpen={showProgress}>
+          <ModalBackdrop />
+          <ModalContent>
+            <ProgressBar
+              progressPercentage={progressPercentage}
+              text={t(progressStep)}
+            />
+          </ModalContent>
+        </Modal>
+      )}
       <TableContent
         onClose={() => setShowTableContent(false)}
         show={showTableContent}

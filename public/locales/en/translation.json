@@ -4,6 +4,7 @@
     "deleting": "Deleting",
     "downloading": "Downloading",
     "initiating": "Initiating",
+    "internet-connection-error": "No internet connection",
     "no-content": "No content found. Please import a document.",
     "no-result": "We found no result for your search",
     "more-results_one": "Found {{count}} more result...",
