@@ -7,15 +7,18 @@ export default async function useLoadSource({
   onInternetConnectionError: onInternetConnectionError,
   onLoadingComplete,
   updateProgress,
+  onlyWifi,
 }: LoadSourceProps) {
   if (updateProgress) {
     updateProgress("initiating", 0);
   }
 
   // check internet connection
-  const { isConnected } = await NetInfo.fetch();
-  if (!isConnected) {
-    onInternetConnectionError();
+  const { isConnected, isWifiEnabled } = await NetInfo.fetch();
+  if (!isConnected || (onlyWifi && !isWifiEnabled)) {
+    if (onInternetConnectionError) {
+      onInternetConnectionError();
+    }
     return;
   }
 
@@ -116,12 +119,13 @@ function parsePage(page: string): Page {
 }
 
 interface LoadSourceProps {
-  onInternetConnectionError: () => void;
+  onInternetConnectionError?: () => void;
   onLoadingComplete?: () => void;
   updateProgress?: (
     progressStep: ReloadingStep,
     progressPercentage: number,
   ) => void;
+  onlyWifi?: boolean;
 }
 
 export type ReloadingStep =

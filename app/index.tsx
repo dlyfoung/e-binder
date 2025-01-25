@@ -1,5 +1,6 @@
 import { VStack } from "@/components/ui/vstack";
 import { openDatabase } from "@/hooks/db-utils";
+import useLoadSource from "@/hooks/useLoadSource";
 import "@/i18n";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
@@ -25,6 +26,8 @@ export default function Index() {
   const [pageNumber, setPageNumber] = useState<PageNumber>(1);
 
   initDatabase();
+  // auto reload if wifi internet connection is available
+  useLoadSource({ onlyWifi: true });
 
   return (
     <ThemeContext.Provider value="light">
