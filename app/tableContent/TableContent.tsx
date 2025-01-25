@@ -13,8 +13,13 @@ import useGetAllPageSummaries from "@/hooks/useGetAllPageSummaries";
 import { PageSummary } from "@/types/Page";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { PageContext, PageNumber } from "../PageContext";
+
+const styles = StyleSheet.create({
+  letter: { paddingVertical: 5 },
+  title: { paddingVertical: 3 },
+});
 
 export default function TableContent({ onClose, show }: TableContentProps) {
   const { t } = useTranslation();
@@ -60,14 +65,16 @@ export default function TableContent({ onClose, show }: TableContentProps) {
 
             return (
               <React.Fragment key={index}>
-                <Heading>{letter}</Heading>
+                <Heading style={styles.letter}>{letter}</Heading>
                 {pageArr.map((p, pIndex) => {
                   return (
                     <Pressable
                       key={pIndex}
                       onPress={() => p.pageNumber && gotoPage(p.pageNumber)}
                     >
-                      <Text>{p.title}</Text>
+                      <Text size="lg" style={styles.title}>
+                        {p.title}
+                      </Text>
                     </Pressable>
                   );
                 })}
