@@ -48,7 +48,6 @@ export default async function useLoadSource({
   );
 
   const { uri } = await downloadResumable.downloadAsync();
-  console.log("Finished downloading to ", uri);
 
   FileSystem.readAsStringAsync(uri).then((textContent) => {
     const pageBreak = "________________";
