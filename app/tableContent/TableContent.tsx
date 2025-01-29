@@ -13,7 +13,7 @@ import useGetAllPageSummaries from "@/hooks/useGetAllPageSummaries";
 import { PageSummary } from "@/types/Page";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, SafeAreaView, StyleSheet } from "react-native";
 import { PageContext, PageNumber } from "../PageContext";
 
 const styles = StyleSheet.create({
@@ -53,10 +53,12 @@ export default function TableContent({ onClose, show }: TableContentProps) {
       <DrawerBackdrop />
       <DrawerContent>
         <DrawerHeader>
-          <Heading>{t("table-content")}</Heading>
-          <DrawerCloseButton onPress={onClose}>
-            <Icon as={CloseIcon} />
-          </DrawerCloseButton>
+          <SafeAreaView style={{ flexDirection: "row" }}>
+            <Heading style={{ flex: 1 }}>{t("table-content")}</Heading>
+            <DrawerCloseButton onPress={onClose}>
+              <Icon as={CloseIcon} />
+            </DrawerCloseButton>
+          </SafeAreaView>
         </DrawerHeader>
         <DrawerBody>
           {Array.from(tableContent.entries()).map((entry, index) => {

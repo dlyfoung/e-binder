@@ -23,7 +23,7 @@ import useDeleteSource, { WipeDataStep } from "@/hooks/useDeleteSource";
 import useLoadSource, { ReloadingStep } from "@/hooks/useLoadSource";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 import InternetConnectionError from "../components/InternetConnectionError";
 import ProgressBar from "../components/ProgressBar";
 import { PageContext } from "../PageContext";
@@ -145,7 +145,9 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
         <DrawerBackdrop />
         <DrawerContent>
           <DrawerHeader>
-            <Heading>{t("settings")}</Heading>
+            <SafeAreaView>
+              <Heading>{t("settings")}</Heading>
+            </SafeAreaView>
           </DrawerHeader>
           <DrawerBody style={styles.menuContent}>
             <Pressable onPress={viewTableOfContent} style={styles.menuItem}>

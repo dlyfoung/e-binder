@@ -7,6 +7,7 @@ import {
   MenuSeparator,
 } from "@/components/ui/menu";
 import { Pressable } from "@/components/ui/pressable";
+import usePlatform from "@/hooks/usePlatform";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
@@ -119,7 +120,7 @@ export default function SearchBar({
       isOpen={showResults}
       onClose={closeResults}
       onOpen={openResults}
-      offset={-50}
+      offset={usePlatform(5, -50, 0)}
       onSelectionChange={(keys) => {
         if (onSelectResult && keys !== "all") {
           // single selection mode

@@ -4,6 +4,7 @@ import useLoadSource from "@/hooks/useLoadSource";
 import "@/i18n";
 import React, { useState } from "react";
 import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { PageContext, PageNumber } from "./PageContext";
 import { ThemeContext } from "./ThemeContext";
 import Header from "./header/Header";
@@ -32,11 +33,13 @@ export default function Index() {
   return (
     <ThemeContext.Provider value="light">
       <PageContext.Provider value={{ pageNumber, setPageNumber }}>
-        <VStack style={styles.container}>
-          <Header />
-          <Reader pageNumber={pageNumber} />
-          {/* TODO: bottom navigator: previous/next */}
-        </VStack>
+        <SafeAreaView>
+          <VStack style={styles.container}>
+            <Header />
+            <Reader pageNumber={pageNumber} />
+            {/* TODO: bottom navigator: previous/next */}
+          </VStack>
+        </SafeAreaView>
       </PageContext.Provider>
     </ThemeContext.Provider>
   );
