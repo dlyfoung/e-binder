@@ -17,7 +17,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "versionCode": 1
+      "versionCode": 1,
+      "package": "com.dlyfoung.ebinder"
     },
     "web": {
       "bundler": "metro",
@@ -44,6 +45,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "f93fd734-e328-4387-b173-e02b612bc6bb"
+      }
     }
   }
 }
