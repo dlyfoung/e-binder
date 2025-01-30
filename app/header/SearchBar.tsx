@@ -120,7 +120,7 @@ export default function SearchBar({
       isOpen={showResults}
       onClose={closeResults}
       onOpen={openResults}
-      offset={usePlatform(5, 2, 0)}
+      offset={usePlatform(5, -50, 0)}
       onSelectionChange={(keys) => {
         if (onSelectResult && keys !== "all") {
           // single selection mode

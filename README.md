@@ -39,7 +39,7 @@ The application uses SQLite has offline database to manage the source document.
 ## Roadmap
 - view "all" pages: Paginate to avoid too many pages
 - bottom navigation: prev | next
-- settings: theme, font size, title per page or not, auto-update if there is internet connection?, only download on wifi (isWifiEnabled)
+- settings: theme, font size, title per page or not, auto-update configuration (always, on open, never, etc.), only download on wifi (isWifiEnabled)
 - load from different sources / formats
 - search page content
 - Error handling when the app "crashes"
