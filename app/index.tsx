@@ -28,7 +28,14 @@ export default function Index() {
 
   initDatabase();
   // auto reload if wifi internet connection is available
-  useLoadSource({ onlyWifi: true });
+  useLoadSource({
+    onlyWifi: true,
+    onLoadingComplete: () => {
+      if (setPageNumber) {
+        setPageNumber(1);
+      }
+    },
+  });
 
   return (
     <ThemeContext.Provider value="light">
