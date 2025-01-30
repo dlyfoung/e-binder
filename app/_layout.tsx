@@ -10,6 +10,7 @@ async function initDatabase() {
   db.execAsync(`
     CREATE VIRTUAL TABLE IF NOT EXISTS pages USING fts4(title TEXT, content TEXT);
   `);
+  db.closeAsync();
 }
 
 export default function RootLayout() {

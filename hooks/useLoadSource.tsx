@@ -83,7 +83,7 @@ function updateDatabase(pages: string[]) {
       );
     }
   });
-  db.closeAsync();
+  db.closeSync();
 }
 
 function parsePage(page: string): Page {
