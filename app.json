@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "E-Binder",
-    "slug": "E-Binder",
+    "slug": "e-binder",
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
