@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
   readingContainer: {
-    paddingBottom: 40,
+    paddingBottom: 80,
     width: "100%",
   },
   readingContent: {
