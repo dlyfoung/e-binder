@@ -44,3 +44,4 @@ The application uses SQLite has offline database to manage the source document.
 - search page content
 - Error handling when the app "crashes"
 - centralized styling
+- [BUG]: when changing page, the new page needs to be scrolled to the top.

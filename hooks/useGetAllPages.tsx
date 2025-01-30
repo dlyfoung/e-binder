@@ -6,6 +6,7 @@ export default function useGetAllPages(): Page[] {
   const pages = db.getAllSync<Page>(
     "SELECT rowid as pageNumber, title, content FROM pages",
   );
+  db.closeSync();
 
   return pages;
 }

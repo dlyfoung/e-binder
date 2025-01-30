@@ -11,6 +11,6 @@ export default function useSearchContent(text: string): Page[] {
     "SELECT rowid as pageNumber, title, content FROM pages WHERE title MATCH ?",
     `${text}*`,
   );
-  // TODO: check why db.closeAsync() clears results
+  db.closeAsync();
   return found;
 }

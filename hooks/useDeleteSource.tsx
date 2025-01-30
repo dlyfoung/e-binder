@@ -14,6 +14,7 @@ export default function useDeleteSource({
   }
 
   db.runSync(`DELETE FROM pages;`);
+  db.closeSync();
 
   if (updateProgress) {
     updateProgress("complete", 100);

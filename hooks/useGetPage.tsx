@@ -7,7 +7,7 @@ export default function useGetPage(pageNumber: number): Page | null {
     "SELECT rowid as pageNumber, title, content FROM pages WHERE rowid = ?",
     pageNumber,
   );
-  // TODOL: db.closeAsync()???;
+  db.closeSync();
 
   return page;
 }
