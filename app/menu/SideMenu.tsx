@@ -9,17 +9,11 @@ import {
   DrawerHeader,
 } from "@/components/ui/drawer";
 import { Heading } from "@/components/ui/heading";
-import {
-  EyeIcon,
-  Icon,
-  MenuIcon,
-  RepeatIcon,
-  SlashIcon,
-} from "@/components/ui/icon";
+import { EyeIcon, Icon, MenuIcon, RepeatIcon } from "@/components/ui/icon";
 import { Modal, ModalBackdrop, ModalContent } from "@/components/ui/modal";
 import { Pressable } from "@/components/ui/pressable";
 import { Text } from "@/components/ui/text";
-import useDeleteSource, { WipeDataStep } from "@/hooks/useDeleteSource";
+import { WipeDataStep } from "@/hooks/useDeleteSource";
 import useLoadSource, { ReloadingStep } from "@/hooks/useLoadSource";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -110,15 +104,6 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
     });
   }
 
-  function wipeData() {
-    setShowProgress(true);
-    useDeleteSource({
-      // clear reader content
-      onDeletionComplete: () => completeProgress(0),
-      updateProgress,
-    });
-  }
-
   return (
     <>
       {showInternetConnectionError ? (
@@ -162,10 +147,6 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
             <Pressable onPress={reloadDocument} style={styles.menuItem}>
               <Icon as={RepeatIcon} style={styles.menuIcon} />
               <Text>{t("reload-document")}</Text>
-            </Pressable>
-            <Pressable onPress={wipeData} style={styles.menuItem}>
-              <Icon as={SlashIcon} style={styles.menuIcon} />
-              <Text>{t("wipe-data")}</Text>
             </Pressable>
           </DrawerBody>
           <DrawerFooter>
