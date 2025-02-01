@@ -16,10 +16,9 @@ Upon launching the application:
 * Navigate the Binder: Browse through the entries, which are organized for easy access.
 * Utilize Search: Employ the advanced search feature to quickly find specific entries within your binder.
 
-![Read content](https://github.com/dlyfoung/e-binder/blob/fcf6d29d98732d7c6efcc3a9a01dc20c39cf9644/assets/screenshots/Screenshot-Reader.png)
-![Search content](https://github.com/dlyfoung/e-binder/blob/fcf6d29d98732d7c6efcc3a9a01dc20c39cf9644/assets/screenshots/Screenshot-Search.png)
-![Settings](https://github.com/dlyfoung/e-binder/blob/fcf6d29d98732d7c6efcc3a9a01dc20c39cf9644/assets/screenshots/Screenshot-Settings.png)
-![Table of Content](https://github.com/dlyfoung/e-binder/blob/fcf6d29d98732d7c6efcc3a9a01dc20c39cf9644/assets/screenshots/Screenshot-TableOfContent.png)
+Read Mode                  |  Search Content           |  Settings                 |  Table of content
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![Read content](https://github.com/dlyfoung/e-binder/blob/81f3035d47b2ff3a7dceab46f266dcd8a2c7426c/assets/screenshots/Screenshot-Reader.png) | ![Search content](https://github.com/dlyfoung/e-binder/blob/81f3035d47b2ff3a7dceab46f266dcd8a2c7426c/assets/screenshots/Screenshot-Search.png) | ![Settings](https://github.com/dlyfoung/e-binder/blob/81f3035d47b2ff3a7dceab46f266dcd8a2c7426c/assets/screenshots/Screenshot-Settings.png) | ![Table of Content](https://github.com/dlyfoung/e-binder/blob/81f3035d47b2ff3a7dceab46f266dcd8a2c7426c/assets/screenshots/Screenshot-TableOfContent.png)
 
 ## Roadmap
 ### Improvements
