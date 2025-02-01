@@ -53,11 +53,7 @@ export default function Index() {
                   const pages = useSearchContent(text);
                   setSearchResults(pages);
                 }}
-                onSelectResult={(pageNumber) => {
-                  if (setPageNumber) {
-                    setPageNumber(pageNumber);
-                  }
-                }}
+                onSelectResult={(pageNumber) => setPageNumber(pageNumber)}
                 searchResults={searchResults.map((result) => {
                   return {
                     index: result.pageNumber ?? 0,
