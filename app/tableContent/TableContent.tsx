@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   title: { paddingVertical: 3 },
 });
 
-export default function TableContent({ onClose, show }: TableContentProps) {
+export default function TableContent({ onClose, isOpen }: TableContentProps) {
   const { t } = useTranslation();
   const setPageNumber = useContext(PageContext)?.setPageNumber;
 
@@ -49,7 +49,7 @@ export default function TableContent({ onClose, show }: TableContentProps) {
   }
 
   return (
-    <Drawer isOpen={show} onClose={onClose} size="full">
+    <Drawer isOpen={isOpen} onClose={onClose} size="full">
       <DrawerBackdrop />
       <DrawerContent>
         <DrawerHeader>
@@ -91,5 +91,5 @@ export default function TableContent({ onClose, show }: TableContentProps) {
 
 interface TableContentProps {
   onClose?: () => void;
-  show: boolean;
+  isOpen: boolean;
 }

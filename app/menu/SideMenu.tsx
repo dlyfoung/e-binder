@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function SideMenu({ onClose, show }: SideMenuProps) {
+export default function SideMenu({ onClose, isOpen }: SideMenuProps) {
   const { t } = useTranslation();
   const setPageNumber = useContext(PageContext)?.setPageNumber;
   const [showProgress, setShowProgress] = useState(false);
@@ -108,7 +108,7 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
     <>
       {showInternetConnectionError ? (
         <InternetConnectionError
-          show={showInternetConnectionError}
+          isOpen={showInternetConnectionError}
           onClose={() => setShowInternetConnectionError(false)}
         />
       ) : (
@@ -124,9 +124,9 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
       )}
       <TableContent
         onClose={() => setShowTableContent(false)}
-        show={showTableContent}
+        isOpen={showTableContent}
       />
-      <Drawer closeOnOverlayClick={true} isOpen={show} size="lg">
+      <Drawer closeOnOverlayClick={true} isOpen={isOpen} size="lg">
         <DrawerBackdrop />
         <DrawerContent>
           <DrawerHeader>
@@ -162,5 +162,5 @@ export default function SideMenu({ onClose, show }: SideMenuProps) {
 
 interface SideMenuProps {
   onClose?: () => void;
-  show: boolean;
+  isOpen: boolean;
 }

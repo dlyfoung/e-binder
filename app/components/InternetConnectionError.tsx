@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
 });
 
 export default function InternetConnectionError({
-  show,
+  isOpen,
   onClose,
 }: InternetConnectionErrorProps) {
   const { t } = useTranslation();
   return (
-    <AlertDialog isOpen={show} onClose={onClose}>
+    <AlertDialog isOpen={isOpen} onClose={onClose}>
       <AlertDialogBackdrop />
       <AlertDialogContent>
         <AlertDialogBody>
@@ -42,6 +42,6 @@ export default function InternetConnectionError({
 }
 
 interface InternetConnectionErrorProps {
-  show: boolean;
+  isOpen: boolean;
   onClose: () => void;
 }
