@@ -4,10 +4,10 @@ import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
 import useGetAllPages from "@/hooks/useGetAllPages";
 import useGetPage from "@/hooks/useGetPage";
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, StyleSheet } from "react-native";
-import { PageNumber } from "../PageContext";
+import { PageContext } from "../store/PageContext";
 
 const styles = StyleSheet.create({
   divider: {
@@ -30,11 +30,22 @@ const styles = StyleSheet.create({
 // TODO: paginate?
 const maxPages = 300;
 
-export default function Reader({ pageNumber }: ReaderProps) {
+export default function Reader() {
   const { t } = useTranslation();
-  // TODO: better default page
+  const { pageNumber } = useContext(PageContext);
+  const noContentPage = {
+    content: t("no-content"),
+    pageNumber: -1,
+    title: "",
+  };
+
+  const allPages = useGetAllPages();
   const pages =
-    pageNumber === "all" ? useGetAllPages() : [useGetPage(pageNumber)];
+    pageNumber === "all"
+      ? allPages.length > 0
+        ? allPages
+        : [noContentPage]
+      : [useGetPage(pageNumber) ?? noContentPage];
 
   return (
     <VStack style={styles.readingContainer}>
@@ -42,7 +53,7 @@ export default function Reader({ pageNumber }: ReaderProps) {
         {pages.slice(0, maxPages).map((page) => {
           const key = page?.pageNumber ?? 0;
           const title = page?.title ?? "";
-          const content = page?.content ?? t("no-content");
+          const content = page?.content ?? "";
           return (
             <React.Fragment key={key}>
               <Heading style={styles.readingTitle}>{title}</Heading>
@@ -54,8 +65,4 @@ export default function Reader({ pageNumber }: ReaderProps) {
       </ScrollView>
     </VStack>
   );
-}
-
-interface ReaderProps {
-  pageNumber: PageNumber;
 }

@@ -20,7 +20,7 @@ import { useTranslation } from "react-i18next";
 import { SafeAreaView, StyleSheet } from "react-native";
 import InternetConnectionError from "../components/InternetConnectionError";
 import ProgressBar from "../components/ProgressBar";
-import { PageContext } from "../PageContext";
+import { PageContext } from "../store/PageContext";
 import TableContent from "../tableContent/TableContent";
 
 const styles = StyleSheet.create({
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 
 export default function SideMenu({ onClose, isOpen }: SideMenuProps) {
   const { t } = useTranslation();
-  const setPageNumber = useContext(PageContext)?.setPageNumber;
+  const { setPageNumber } = useContext(PageContext);
   const [showProgress, setShowProgress] = useState(false);
   const [progressPercentage, setProgressPercentage] = useState(0);
   const [progressStep, setProgressStep] = useState<
@@ -75,15 +75,11 @@ export default function SideMenu({ onClose, isOpen }: SideMenuProps) {
       closeSideMenu();
     }, 500);
 
-    if (setPageNumber) {
-      setPageNumber(pageNumber);
-    }
+    setPageNumber(pageNumber);
   }
 
   function viewAll() {
-    if (setPageNumber) {
-      setPageNumber("all");
-    }
+    setPageNumber("all");
     closeSideMenu();
   }
 

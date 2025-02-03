@@ -14,7 +14,7 @@ import { PageSummary } from "@/types/Page";
 import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, SafeAreaView, StyleSheet } from "react-native";
-import { PageContext, PageNumber } from "../PageContext";
+import { PageContext, PageNumber } from "../store/PageContext";
 
 const styles = StyleSheet.create({
   letter: { paddingVertical: 5 },
@@ -23,11 +23,10 @@ const styles = StyleSheet.create({
 
 export default function TableContent({ onClose, isOpen }: TableContentProps) {
   const { t } = useTranslation();
-  const setPageNumber = useContext(PageContext)?.setPageNumber;
+  const { setPageNumber } = useContext(PageContext);
 
   const tableContent = new Map<string, PageSummary[]>();
   useGetAllPageSummaries()
-    // TODO: refactor optional props for page and remove following filter
     .filter((pageSummary) => pageSummary.title != null)
     .map((pageSummary) => {
       const letter = pageSummary.title!.substring(0, 1);
@@ -40,9 +39,7 @@ export default function TableContent({ onClose, isOpen }: TableContentProps) {
     });
 
   function gotoPage(pageNumber: PageNumber) {
-    if (setPageNumber) {
-      setPageNumber(pageNumber);
-    }
+    setPageNumber(pageNumber);
     if (onClose) {
       onClose();
     }
