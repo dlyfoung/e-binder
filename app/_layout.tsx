@@ -3,7 +3,7 @@ import "@/global.css";
 import { openDatabase } from "@/hooks/db-utils";
 import { Stack } from "expo-router";
 import React, { useState } from "react";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "./store/ThemeContext";
 
 async function initDatabase() {
   const db = openDatabase();

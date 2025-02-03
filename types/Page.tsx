@@ -1,6 +1,6 @@
 export default interface Page {
   content?: string;
-  pageNumber?: number;
+  pageNumber: number;
   title?: string;
 }
 
