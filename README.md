@@ -22,16 +22,23 @@ Read Mode                  |  Search Content           |  Settings              
 
 ## Roadmap
 ### Improvements
+- home page (containing binder name and organization name)
+- help page
 - view "all" pages: Paginate to avoid too many pages
-- bottom navigation: prev | next
-- settings: theme, font size, title per page or not, auto-update configuration (always, on open, never, etc.), only download on wifi (isWifiEnabled)
-- load from different sources / formats. Possibly format as the original document is formatted.
-- search page content
+- bottom navigation / swipe: prev | next
+- settings: theme, font size, title per page or not, auto-refresh configuration (always, on open, never, etc.), only download on wifi (isWifiEnabled)
+- load from multiple documents.
+- load from multiple sources? (other than Google docs)
+- load from different formats. Possibly format as the original document is formatted.
+- search page contents
 - error handling when the app "crashes"
 - centralized styling
+- "new version available" when a new version of the original document is available.
+- scroll down to refresh the content.
 
 ### Known bugs
 - [BUG #1]: when changing page, the new page needs to be scrolled to the top.
+- [BUG #2]: The X on top right after clicking on "View Table of Content" was a little unresponsive. Can it be a little more lenient so if you tap around that general area, it can close?
 
 
 ## Development

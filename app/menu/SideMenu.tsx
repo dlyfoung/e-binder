@@ -21,7 +21,7 @@ import { SafeAreaView, StyleSheet } from "react-native";
 import InternetConnectionError from "../components/InternetConnectionError";
 import ProgressBar from "../components/ProgressBar";
 import { PageContext } from "../store/PageContext";
-import TableContent from "../tableContent/TableContent";
+import TableContent from "../tableContents/TableContents";
 
 const styles = StyleSheet.create({
   divider: {
@@ -83,7 +83,7 @@ export default function SideMenu({ onClose, isOpen }: SideMenuProps) {
     closeSideMenu();
   }
 
-  function viewTableOfContent() {
+  function viewTableOfContents() {
     setShowTableContent(true);
     closeSideMenu();
   }
@@ -131,9 +131,9 @@ export default function SideMenu({ onClose, isOpen }: SideMenuProps) {
             </SafeAreaView>
           </DrawerHeader>
           <DrawerBody style={styles.menuContent}>
-            <Pressable onPress={viewTableOfContent} style={styles.menuItem}>
+            <Pressable onPress={viewTableOfContents} style={styles.menuItem}>
               <Icon as={MenuIcon} style={styles.menuIcon} />
-              <Text>{t("view-table-content")}</Text>
+              <Text>{t("view-table-contents")}</Text>
             </Pressable>
             <Pressable onPress={viewAll} style={styles.menuItem}>
               <Icon as={EyeIcon} style={styles.menuIcon} />
@@ -142,7 +142,7 @@ export default function SideMenu({ onClose, isOpen }: SideMenuProps) {
             <Divider style={styles.divider} />
             <Pressable onPress={reloadDocument} style={styles.menuItem}>
               <Icon as={RepeatIcon} style={styles.menuIcon} />
-              <Text>{t("reload-document")}</Text>
+              <Text>{t("refresh-content")}</Text>
             </Pressable>
           </DrawerBody>
           <DrawerFooter>
