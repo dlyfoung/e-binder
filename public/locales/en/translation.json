@@ -9,12 +9,12 @@
     "no-result": "We found no result for your search",
     "more-results_one": "Found {{count}} more result...",
     "more-results_other": "Found {{count}} more results...",
-    "reload-document": "Reload document",
+    "refresh-content": "Refresh content",
     "reloading": "Reloading",
     "search": "Search",
     "settings": "Settings",
-    "table-content": "Table of Content",
+    "table-contents": "Table of Contents",
     "updating-database": "Updating database",
     "view-all": "View all pages",
-    "view-table-content": "View table of content"
+    "view-table-content": "View table of contents"
 }
