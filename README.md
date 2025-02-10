@@ -49,13 +49,13 @@ This application is built with React Native and powered by [Expo](https://expo.d
 
 1. Install dependencies
 
-   ```bash
+   ```zsh
    npm install
    ```
 
 2. Start the app
 
-   ```bash
+   ```zsh
     npm start
    ```
 
@@ -69,9 +69,20 @@ To test the application, you can use the `expo` mobile app or use an emulator (s
 
 To lint and format code, use:
 
-   ```bash
+   ```zsh
     npm run lint
    ```
+
+## Testing (E2E)
+
+This project uses [Maestro](https://maestro.mobile.dev) to run e2e tests. The flow tests are set up in `/maestro`.
+
+1. Install Maestro:
+
+```zsh
+brew tap mobile-dev-inc/tap
+brew install maestro
+```
 
 
 ## License
