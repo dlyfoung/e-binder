@@ -1,0 +1,13 @@
+appId: com.dlyfoung.ebinder
+---
+# Test that the search displays a "not found" message if no page is found
+- launchApp
+- tapOn: "Search..."
+- inputText: "None"
+- assertVisible: "None but Jesus"
+- tapOn:
+    id: "readerContent"
+- assertNotVisible: "None but Jesus"
+- tapOn: 
+    id: "searchButton"
+- assertVisible: "None but Jesus"

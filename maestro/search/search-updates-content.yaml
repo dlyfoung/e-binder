@@ -1,0 +1,14 @@
+appId: com.dlyfoung.ebinder
+---
+# Test that the search returns a selectable page and clicking on it udpates the reader content
+- launchApp
+- assertVisible: 
+    id: "readerContent"
+- assertNotVisible: "None but Jesus"
+- tapOn: "Search..."
+- inputText: "None"
+- assertVisible: "None but Jesus"
+- tapOn: "None but Jesus"
+- tapOn: 
+    id: "readerContent"
+- assertVisible: "None but Jesus"

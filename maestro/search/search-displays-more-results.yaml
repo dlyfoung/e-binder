@@ -1,0 +1,7 @@
+appId: com.dlyfoung.ebinder
+---
+# Test that the search displays a "more results" message
+- launchApp
+- tapOn: "Search..."
+- inputText: "a"
+- assertVisible: "Found [0-9]+ more results..."

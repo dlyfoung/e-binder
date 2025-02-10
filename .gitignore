@@ -34,3 +34,9 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# e2e test output
+maestro/.maestro
+
+# builds
+android

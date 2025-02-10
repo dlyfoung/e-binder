@@ -1,0 +1,7 @@
+appId: com.dlyfoung.ebinder
+---
+# Test that the search displays a "not found" message if no page is found
+- launchApp
+- tapOn: "Search..."
+- inputText: "QWERTY"
+- assertVisible: "We found no result for your search"
