@@ -142,7 +142,7 @@ export default function SearchBar({
             />
             <InputSlot style={styles.searchIcon}>
               <Pressable onPress={openResults}>
-                <InputIcon as={SearchIcon} />
+                <InputIcon as={SearchIcon} testID="searchButton" />
               </Pressable>
             </InputSlot>
           </Input>
