@@ -57,7 +57,9 @@ export default function Reader() {
           return (
             <React.Fragment key={key}>
               <Heading style={styles.readingTitle}>{title}</Heading>
-              <Text size="lg">{content}</Text>
+              <Text testID="readerContent" size="lg">
+                {content}
+              </Text>
               {page && <Divider style={styles.divider} />}
             </React.Fragment>
           );

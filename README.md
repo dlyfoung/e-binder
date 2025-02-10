@@ -35,6 +35,7 @@ Read Mode                  |  Search Content           |  Settings              
 - centralized styling
 - "new version available" when a new version of the original document is available.
 - scroll down to refresh the content.
+- "dot" menu for faster access when screen is pressed for a second or so.
 
 ### Known bugs
 - [BUG #1]: when changing page, the new page needs to be scrolled to the top.
@@ -55,6 +56,10 @@ This application is built with React Native and powered by [Expo](https://expo.d
 
 2. Start the app
 
+   ```zsh
+    npx expo start
+   ```
+or:
    ```zsh
     npm start
    ```
@@ -84,6 +89,29 @@ brew tap mobile-dev-inc/tap
 brew install maestro
 ```
 
+2. Go to the e2e test folder:
+
+```zsh
+cd maestro
+```
+
+3. Start the mobile emulator.
+
+4. Build and run the local app depending on the platform you are testing:
+
+```zsh
+npx expo run:ios
+```
+or
+```zsh
+npx expo run:android
+```
+
+3. To run the tests locally, . Then run the command below. The test output will be stored under `/maestro/.maestro/tests`.
+
+```zsh
+./e2e-tests.sh
+```
 
 ## License
 

@@ -1,4 +1,13 @@
 appId: com.dlyfoung.ebinder
 ---
 - launchApp
-- tapOn: "Search"
+- assertVisible: 
+    id: "readerContent"
+- assertNotVisible: "None but Jesus"
+- tapOn: "Search..."
+- inputText: "None"
+- assertVisible: "None but Jesus"
+- tapOn: "None but Jesus"
+- tapOn: 
+    id: "readerContent"
+- assertVisible: "None but Jesus"
