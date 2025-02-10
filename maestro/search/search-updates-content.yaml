@@ -1,5 +1,6 @@
 appId: com.dlyfoung.ebinder
 ---
+# Test that the search returns a selectable page and clicking on it udpates the reader content
 - launchApp
 - assertVisible: 
     id: "readerContent"

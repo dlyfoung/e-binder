@@ -1,3 +1,5 @@
-
 rm -r .maestro/tests
-maestro test --debug-output . -e APP_ID=com.dlyfoung.ebinder **/*.yaml
+
+all='**/*.yaml'
+files="${1:-$all}"
+maestro test --debug-output . -e APP_ID=com.dlyfoung.ebinder $files

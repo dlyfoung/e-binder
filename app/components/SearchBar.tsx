@@ -73,7 +73,7 @@ export default function SearchBar({
     if (searchResults.length == 0) {
       const noResult = t("no-result");
       return (
-        <MenuItem key={noResultKey} textValue={noResult}>
+        <MenuItem disabled={true} key={noResultKey} textValue={noResult}>
           <MenuItemLabel style={styles.searchResultDisabled} size="xl">
             {noResult}
           </MenuItemLabel>
@@ -102,7 +102,7 @@ export default function SearchBar({
       resultMenuItems.push(
         <React.Fragment key={moreResultKey}>
           <MenuSeparator />
-          <MenuItem key={moreResultKey} textValue={moreResult}>
+          <MenuItem disabled={true} key={moreResultKey} textValue={moreResult}>
             <MenuItemLabel size="xl" style={styles.searchResultDisabled}>
               {moreResult}
             </MenuItemLabel>

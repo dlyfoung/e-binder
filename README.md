@@ -107,10 +107,16 @@ or
 npx expo run:android
 ```
 
-3. To run the tests locally, . Then run the command below. The test output will be stored under `/maestro/.maestro/tests`.
+3. Run the tests locally. The test output will be stored under `/maestro/.maestro/tests`.
 
+To run all the tests:
 ```zsh
 ./e2e-tests.sh
+```
+
+To run a specific test:
+```zsh
+./e2e-tests.sh search/search-displays-none.yaml
 ```
 
 ## License
