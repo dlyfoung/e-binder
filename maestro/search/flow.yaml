@@ -1,0 +1,4 @@
+appId: com.dlyfoung.ebinder
+---
+- launchApp
+- tapOn: "Search"
