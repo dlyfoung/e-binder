@@ -119,6 +119,24 @@ To run a specific test:
 ./e2e-tests.sh search/search-displays-none.yaml
 ```
 
+## Build and submit to the Google and Apple stores
+
+The project uses EAS to build and submit to the Google and Apple stores. For more details, see:
+1. [EAS build](https://docs.expo.dev/build/introduction/). The project is already configured to run the builds on [Expo](https://expo.dev).
+
+To build on Android, run:
+```zsh
+eas build --platform android
+```
+To build on ios, run:
+```zsh
+eas build --platform ios
+```
+
+2. [EAS Submit](https://docs.expo.dev/submit/introduction/)
+
+
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE file](https://github.com/dlyfoung/e-binder/blob/main/LICENSE.md) for details.
