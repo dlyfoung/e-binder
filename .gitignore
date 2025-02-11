@@ -39,4 +39,9 @@ yarn-error.*
 maestro/.maestro
 
 # builds
-android
+android/
+ios/
+
+#certs
+certs/
+credentials.json
