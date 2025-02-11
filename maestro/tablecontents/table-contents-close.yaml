@@ -1,0 +1,14 @@
+appId: com.dlyfoung.ebinder
+---
+# Test that the table of contents closes
+- launchApp
+- tapOn: 
+    id: "menuButton"
+- assertVisible: "Settings"
+- tapOn: "View table of contents"
+- assertVisible: "Table of Contents"
+- assertVisible: "0-9"
+- tapOn:
+    id: "tableContentCloseButton"
+- assertNotVisible: "Table of Contents"
+- assertNotVisible: "Settings"

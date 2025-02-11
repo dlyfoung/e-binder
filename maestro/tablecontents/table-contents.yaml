@@ -1,0 +1,24 @@
+appId: com.dlyfoung.ebinder
+---
+# Test that the table of contents is displayed and open page
+- launchApp
+- tapOn: 
+    id: "menuButton"
+- assertVisible: "Settings"
+- tapOn: "View table of contents"
+- assertVisible: "Table of Contents"
+- assertVisible: "0-9"
+- assertVisible: "10,000 Reasons"
+- assertVisible: "^A$"
+- assertVisible: "Abide"
+- assertVisible: "All Creatures of Our God and King"
+- assertVisible: "^B$"
+- assertVisible: "^C$"
+- scrollUntilVisible: 
+    element: "You Bled"
+    speed: 80
+- tapOn: "You Bled"
+- assertNotVisible: "Settings"
+- tapOn:
+    id: "readerContent"
+- assertVisible: "You Bled"

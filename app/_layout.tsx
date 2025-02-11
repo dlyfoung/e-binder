@@ -3,7 +3,14 @@ import "@/global.css";
 import { openDatabase } from "@/hooks/db-utils";
 import { Stack } from "expo-router";
 import React, { useState } from "react";
+import { LogBox } from "react-native";
 import { ThemeContext } from "./store/ThemeContext";
+
+// Hide logbox due to e2e tests. Cannot pass an argument when running the tests with expo.
+// https://maestro.mobile.dev/api-reference/commands/launchapp#launch-arguments
+// For more details, see https://github.com/mobile-dev-inc/maestro/issues/2015
+// Until it is fixed, we ignore logs.
+LogBox.ignoreAllLogs();
 
 async function initDatabase() {
   const db = openDatabase();

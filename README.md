@@ -97,15 +97,32 @@ cd maestro
 
 3. Start the mobile emulator.
 
-4. Build and run the local app depending on the platform you are testing:
+4. If the app was already build , run `npm start`. Otherwise, build and run the local app depending on the platform you are testing:
 
-```zsh
-npx expo run:ios
-```
-or
 ```zsh
 npx expo run:android
 ```
+or
+```zsh
+npx expo run:ios
+```
+
+To build on IOS, the CocoaPods dependency is required:
+```zsh
+sudo gem install cocoaPods
+```
+
+The installation may fail if Ruby is not up to date (MacOS's 2.6.1). To install a newer version (ex: 3.4.1), you can use [RVM](https://stackoverflow.com/questions/60182199/upgrading-global-ruby-version-on-macos).
+```zsh
+export CONFIGURE_ARGS=""
+for ext in openssl readline libyaml zlib; do 
+  CONFIGURE_ARGS="${CONFIGURE_ARGS} --with-$ext-dir=$(brew --prefix $ext)" 
+done
+
+rvm install (ruby version)
+rvm --default use (ruby version)
+```
+
 
 3. Run the tests locally. The test output will be stored under `/maestro/.maestro/tests`.
 
