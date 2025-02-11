@@ -52,7 +52,10 @@ export default function TableContent({ onClose, isOpen }: TableContentProps) {
         <DrawerHeader>
           <SafeAreaView style={{ flexDirection: "row" }}>
             <Heading style={{ flex: 1 }}>{t("table-contents")}</Heading>
-            <DrawerCloseButton onPress={onClose}>
+            <DrawerCloseButton
+              onPress={onClose}
+              testID="tableContentCloseButton"
+            >
               <Icon as={CloseIcon} />
             </DrawerCloseButton>
           </SafeAreaView>
