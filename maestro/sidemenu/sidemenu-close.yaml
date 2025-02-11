@@ -1,0 +1,9 @@
+appId: com.dlyfoung.ebinder
+---
+# Test that the side menu closes
+- launchApp
+- tapOn: 
+    id: "menuButton"
+- assertVisible: "Settings"
+- tapOn: "Close"
+- assertNotVisible: "Settings"
