@@ -1,0 +1,14 @@
+appId: com.dlyfoung.ebinder
+---
+# Test refreshing content successfully
+- launchApp
+- tapOn: 
+    id: "menuButton"
+- assertVisible: "Settings"
+- tapOn: 
+    text: "Refresh content"
+    # does not wait for Maestro to settle, so we can check on the progress bar:
+    # https://maestro.mobile.dev/api-reference/commands/tapon#control-wait-time
+    waitToSettleTimeoutMs: 0
+- assertVisible: "Downloading [0-9]+%|Complete 100%"
+- assertNotVisible: "Settings"

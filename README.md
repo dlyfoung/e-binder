@@ -97,7 +97,7 @@ cd maestro
 
 3. Start the mobile emulator.
 
-4. Build and run the local app depending on the platform you are testing:
+4. If the app was already build , run `npm start`. Otherwise, build and run the local app depending on the platform you are testing:
 
 ```zsh
 npx expo run:ios

@@ -1,0 +1,13 @@
+appId: com.dlyfoung.ebinder
+---
+# Test that we can view all the pages
+- launchApp
+- tapOn: 
+    id: "menuButton"
+- assertVisible: "Settings"
+- tapOn: "View all pages"
+- assertNotVisible: "Settings"
+- assertVisible: ".*Bless the Lord oh my soul.*"
+- scrollUntilVisible: 
+    element: ".*Marvelous, wonderful, infinite God.*"
+    speed: 80
