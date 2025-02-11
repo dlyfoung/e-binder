@@ -10,11 +10,9 @@
     },
     "preview": {
       "android": {
-        "package": "com.dlyfoung.ebinder",
         "buildType": "apk"
       },
       "ios": {
-        "bundleIdentifier": "com.dlyfoung.ebinder",
         "simulator": true
       },
       "distribution": "internal"
