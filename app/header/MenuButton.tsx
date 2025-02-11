@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 export default function MenuButton({ onPress }: MenuButtonProps) {
   return (
-    <Pressable onPress={onPress} style={styles.menuButton}>
+    <Pressable onPress={onPress} style={styles.menuButton} testID="menuButton">
       <Icon as={MenuIcon} size="xl" />
     </Pressable>
   );

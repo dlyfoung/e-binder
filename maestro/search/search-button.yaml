@@ -1,6 +1,6 @@
 appId: com.dlyfoung.ebinder
 ---
-# Test that the search displays a "not found" message if no page is found
+# Test that the search button re-open the search results
 - launchApp
 - tapOn: "Search..."
 - inputText: "None"
