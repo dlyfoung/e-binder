@@ -2,6 +2,8 @@
 
 E-Binder is a mobile application that converts documents into interactive "binders" with advanced search capabilities. Users can load binder pages from Google Documents, enabling quick and efficient access to information. A key use case is assisting churches in swiftly retrieving resources like song lyrics. The import function automatically creates an entry for each page, using the first line as the title.
 
+Available on the [Google App store](https://play.google.com/store/apps/details?id=com.dlyfoung.ebinder&hl=en_US).
+
 ## Features
 
 * Document Transformation: Convert documents into binders for organized access.
