@@ -68,10 +68,25 @@ or:
 
 To test the application, you can use the `expo` mobile app or use an emulator (see [Android iOS Emulator extension in VS Code](https://marketplace.visualstudio.com/items?itemName=DiemasMichiels.emulate))
 
+3. For the backend, install Go in the `backend` folder:
+   ```zsh
+   brew install go
+   ```
+
+4. Install mysql driver:
+   ```zsh
+   go get -u github.com/go-sql-driver/mysql
+   ```
+
+5. To run the backend:
+   ```zsh
+   go run main.go
+   ```
 
 ## Project structure
 
 * `/app` contains the application code.
+* `/backend` contains the backend code.
 
 
 To lint and format code, use:

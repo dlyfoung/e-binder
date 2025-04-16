@@ -45,3 +45,6 @@ ios/
 #certs
 certs/
 credentials.json
+
+#mysql data
+backend/db/.mysql_data
